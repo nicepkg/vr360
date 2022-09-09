@@ -1,0 +1,15 @@
+{
+  "recommendations": [
+    "antfu.iconify",
+    "antfu.unocss",
+    "antfu.goto-alias",
+    "csstools.postcss",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "mrmlnc.vscode-less",
+    "mikestead.dotenv",
+    "stylelint.vscode-stylelint",
+    "vue.volar",
+    "streetsidesoftware.code-spell-checker"
+  ]
+}

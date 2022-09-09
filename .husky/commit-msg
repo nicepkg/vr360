@@ -1,0 +1,5 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# 要符合 angular commit 规范才给通过
+# npx --no-install commitlint --edit "$1"

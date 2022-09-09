@@ -1,0 +1,16 @@
+**/node_modules/
+*.html
+es/
+**/lib/
+**/dist/
+**/lib-types/
+_site/
+**/dist/
+CHANGELOG.md
+.rollup.cache
+tsconfig.tsbuildinfo
+!.storybook
+!.vuepress
+types/components.d.ts
+types/auto-imports.d.ts
+*.generated.ts

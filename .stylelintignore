@@ -1,0 +1,10 @@
+node_modules/
+**/*.spec.*
+es/
+lib/
+_site/
+dist/
+**/node_modules/*
+**/segi-ant-theme.less
+**/.rollup.cache/*
+**/index.html

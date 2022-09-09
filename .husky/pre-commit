@@ -1,0 +1,5 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# 校验 git 缓存区的文件代码规范，并美化
+npx --no-install lint-staged
