@@ -1,17 +1,14 @@
 <template>
   <div class="App text-dark-9 bg-light-3 w-full h-full flex flex-col">
-    <div class="App-content-wrapper w-full flex-1 overflow-hidden">
-      <div class="App-content w-full h-full overflow-auto">
-        <router-view v-slot="{Component}">
-          <component :is="Component" />
-        </router-view>
-      </div>
-    </div>
+    <!-- <FirstHouseVue></FirstHouseVue> -->
+    <Vr360></Vr360>
   </div>
 </template>
 
 <script setup lang="ts">
 import {HeadAttrs, useHead} from '@vueuse/head'
+import FirstHouseVue from './FirstHouse.vue'
+import Vr360 from './Vr360.vue'
 
 // 动态插入 scripts 标签
 const script: HeadAttrs[] = []

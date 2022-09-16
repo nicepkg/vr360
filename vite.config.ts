@@ -1,5 +1,5 @@
 import path from 'path'
-import {defineConfig, loadEnv} from 'vite'
+import {defineConfig, loadEnv, UserConfig} from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import Inspect from 'vite-plugin-inspect'
@@ -45,5 +45,5 @@ export default defineConfig(({mode}) => {
       // 访问http://localhost:3333/__inspect/查看inspector
       Inspect()
     ]
-  }
+  } as UserConfig
 })
