@@ -6,8 +6,6 @@
 
 <script setup lang="ts">
 /* eslint-disable import/no-named-as-default-member */
-import * as THREE from 'three'
-import TWEEN from '@tweenjs/tween.js'
 import {onMounted, ref} from 'vue'
 import {Vr360} from './vr360-sdk'
 
@@ -16,7 +14,7 @@ const containerRef = ref<HTMLElement>()
 onMounted(() => {
   const vr360 = new Vr360({
     container: containerRef.value!,
-    roomsConfig: [
+    spacesConfig: [
       {
         id: 'roomA',
         centerPosition: {
@@ -26,7 +24,7 @@ onMounted(() => {
         },
         hotPoints: [
           {
-            targetRoomId: 'roomB',
+            targetSpaceId: 'roomB',
             position: {
               x: -10,
               y: -25,

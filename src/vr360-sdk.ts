@@ -4,14 +4,14 @@ import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
 import TWEEN from '@tweenjs/tween.js'
 import {EventEmitter} from 'eventemitter3'
 
-type GetAddEventEmitterToMeshDeps = () => {
+type GetAddListenerToThreeObjectDeps = () => {
   camera?: THREE.PerspectiveCamera
   scene?: THREE.Scene
   renderer?: THREE.WebGLRenderer
 }
 
-function addEventEmitterToMesh(
-  getDeps: GetAddEventEmitterToMeshDeps,
+function addListenerToThreeObject(
+  getDeps: GetAddListenerToThreeObjectDeps,
   events: Array<keyof HTMLElementEventMap> = ['click', 'mouseover', 'mouseout']
 ) {
   const renderElement = getDeps().renderer?.domElement
@@ -56,10 +56,10 @@ export interface Position {
 
 export interface HotPoint {
   position: Position
-  targetRoomId: string
+  targetSpaceId: string
 }
 
-export interface RoomConfig {
+export interface SpaceConfig {
   id: string
   centerPosition: Position
   hotPoints: HotPoint[]
@@ -90,9 +90,9 @@ interface Vr360Options {
   centerPointTextureUrl?: string
 
   /**
-   * 房间配置
+   * 空间配置
    */
-  roomsConfig: RoomConfig[]
+  spacesConfig: SpaceConfig[]
 }
 
 export class Vr360 extends EventEmitter<Vr360Events> {
@@ -133,7 +133,7 @@ export class Vr360 extends EventEmitter<Vr360Events> {
 
   constructor(options: Vr360Options) {
     super()
-    const {container, hotPointTextureUrl, centerPointTextureUrl, roomsConfig} = options
+    const {container, hotPointTextureUrl, centerPointTextureUrl, spacesConfig} = options
 
     this.container = container
     this.updateContainerSize()
@@ -147,7 +147,7 @@ export class Vr360 extends EventEmitter<Vr360Events> {
     this.centerPointTextureUrl = centerPointTextureUrl || 'picture/center.png'
 
     // 为 mesh 添加事件支持
-    addEventEmitterToMesh(() => {
+    addListenerToThreeObject(() => {
       return {
         camera: this.camera,
         scene: this.scene,
@@ -155,7 +155,7 @@ export class Vr360 extends EventEmitter<Vr360Events> {
       }
     })
 
-    this.setRoomsConfig(roomsConfig)
+    this.setSpacesConfig(spacesConfig)
   }
 
   /**
@@ -190,13 +190,13 @@ export class Vr360 extends EventEmitter<Vr360Events> {
   }
 
   /**
-   * 设置 room config
+   * 设置 space config
    */
-  public setRoomsConfig(roomsConfig: RoomConfig[], roomId?: string | undefined) {
-    const currentRoomId = roomId || roomsConfig[0].id
-    roomsConfig.map(roomConfig => {
-      const {id, centerPosition, hotPoints = [], textureUrls = []} = roomConfig
-      if (id !== currentRoomId) return
+  public setSpacesConfig(spacesConfig: SpaceConfig[], spaceId?: string | undefined) {
+    const currentSpaceId = spaceId || spacesConfig[0].id
+    spacesConfig.map(spaceConfig => {
+      const {id, centerPosition, hotPoints = [], textureUrls = []} = spaceConfig
+      if (id !== currentSpaceId) return
 
       // 调整相机位置
       this.camera.position.set(centerPosition.x, centerPosition.y, centerPosition.z)
@@ -207,13 +207,13 @@ export class Vr360 extends EventEmitter<Vr360Events> {
           hotPoint.position.x,
           hotPoint.position.y,
           hotPoint.position.z,
-          hotPoint.targetRoomId
+          hotPoint.targetSpaceId
         )
       })
 
       this.scene.add(...hotPointMeshes)
 
-      // 创建房间
+      // 创建空间
       const boxGeometry = new THREE.BoxGeometry(100, 100, 100)
 
       // 随机挑选一个面翻转扩大，使得贴图能够正常渲染
@@ -225,9 +225,9 @@ export class Vr360 extends EventEmitter<Vr360Events> {
         const texture = new THREE.TextureLoader().load(textureUrls[direction as keyof typeof textureUrls])
         boxMaterials.push(new THREE.MeshBasicMaterial({map: texture}))
       })
-      const roomMesh = new THREE.Mesh(boxGeometry, boxMaterials)
+      const spaceMesh = new THREE.Mesh(boxGeometry, boxMaterials)
 
-      this.scene.add(roomMesh)
+      this.scene.add(spaceMesh)
     })
   }
 
@@ -307,9 +307,9 @@ export class Vr360 extends EventEmitter<Vr360Events> {
    * @param x x 坐标
    * @param y y 坐标
    * @param z z 坐标
-   * @param targetRoomId 跳转的房间 id
+   * @param targetSpaceId 跳转的空间 id
    */
-  private createHotPointMesh(x: number, y: number, z: number, targetRoomId: string | undefined) {
+  private createHotPointMesh(x: number, y: number, z: number, targetSpaceId: string | undefined) {
     const geometry = new THREE.CircleGeometry(4, 20, 0, 2 * Math.PI)
     geometry.scale(-1, 1, 1)
     const hotPointMesh = new THREE.Mesh(
@@ -324,7 +324,7 @@ export class Vr360 extends EventEmitter<Vr360Events> {
     hotPointMesh.position.set(x, y, z)
 
     hotPointMesh.addEventListener('click', () => {
-      console.log('调转到房间', targetRoomId)
+      console.log('调转到空间', targetSpaceId)
     })
 
     return hotPointMesh
