@@ -32,7 +32,7 @@ function addListenerToThreeObject(
     const intersects = raycaster.intersectObjects(scene.children)
 
     if (intersects.length > 0) {
-      intersects[0]?.object?.dispatchEvent?.({type: eventName})
+      intersects[0]?.object?.dispatchEvent?.({type: eventName, intersect: intersects[0]})
     }
   }
 
@@ -59,18 +59,20 @@ export interface HotPoint {
   targetSpaceId: string
 }
 
+export interface CubeSpaceTextureUrls {
+  left: string
+  right: string
+  top: string
+  bottom: string
+  front: string
+  back: string
+}
+
 export interface SpaceConfig {
   id: string
   centerPosition: Position
   hotPoints: HotPoint[]
-  textureUrls: {
-    left: string
-    right: string
-    top: string
-    bottom: string
-    front: string
-    back: string
-  }
+  cubeSpaceTextureUrls: CubeSpaceTextureUrls
 }
 
 interface Vr360Options {
@@ -195,7 +197,7 @@ export class Vr360 extends EventEmitter<Vr360Events> {
   public setSpacesConfig(spacesConfig: SpaceConfig[], spaceId?: string | undefined) {
     const currentSpaceId = spaceId || spacesConfig[0].id
     spacesConfig.map(spaceConfig => {
-      const {id, centerPosition, hotPoints = [], textureUrls = []} = spaceConfig
+      const {id, centerPosition, hotPoints = [], cubeSpaceTextureUrls} = spaceConfig
       if (id !== currentSpaceId) return
 
       // 调整相机位置
@@ -210,25 +212,33 @@ export class Vr360 extends EventEmitter<Vr360Events> {
           hotPoint.targetSpaceId
         )
       })
-
       this.scene.add(...hotPointMeshes)
 
-      // 创建空间
-      const boxGeometry = new THREE.BoxGeometry(100, 100, 100)
-
-      // 随机挑选一个面翻转扩大，使得贴图能够正常渲染
-      boxGeometry.scale(-1, 1, 1)
-
-      const boxMaterials: THREE.MeshBasicMaterial[] = []
-      const directions = ['right', 'left', 'top', 'bottom', 'front', 'back'] as const
-      directions.map(direction => {
-        const texture = new THREE.TextureLoader().load(textureUrls[direction as keyof typeof textureUrls])
-        boxMaterials.push(new THREE.MeshBasicMaterial({map: texture}))
-      })
-      const spaceMesh = new THREE.Mesh(boxGeometry, boxMaterials)
-
+      const spaceMesh = this.createCubeSpaceMesh(cubeSpaceTextureUrls)
       this.scene.add(spaceMesh)
     })
+  }
+
+  /**
+   * 创建正方体空间 mesh
+   */
+  public createCubeSpaceMesh(cubeSpaceTextureUrls: CubeSpaceTextureUrls) {
+    // 创建空间
+    const boxGeometry = new THREE.BoxGeometry(100, 100, 100)
+
+    // 随机挑选一个面翻转扩大，使得贴图能够正常渲染
+    boxGeometry.scale(-1, 1, 1)
+
+    // 贴材质
+    const directions = ['right', 'left', 'top', 'bottom', 'front', 'back'] as const
+    const boxMaterials: THREE.MeshBasicMaterial[] = directions.map(direction => {
+      const texture = new THREE.TextureLoader().load(
+        cubeSpaceTextureUrls[direction as keyof typeof cubeSpaceTextureUrls]
+      )
+      return new THREE.MeshBasicMaterial({map: texture})
+    })
+    const spaceMesh = new THREE.Mesh(boxGeometry, boxMaterials)
+    return spaceMesh
   }
 
   /**

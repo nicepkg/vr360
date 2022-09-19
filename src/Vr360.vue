@@ -32,7 +32,7 @@ onMounted(() => {
             }
           }
         ],
-        textureUrls: {
+        cubeSpaceTextureUrls: {
           right: 'picture/FirstHousing/door/right.jpeg',
           left: 'picture/FirstHousing/door/left.jpeg',
           top: 'picture/FirstHousing/door/top.jpeg',
