@@ -44,6 +44,10 @@ export default defineConfig(({mode}) => {
       // https://github.com/antfu/vite-plugin-inspect
       // 访问http://localhost:3333/__inspect/查看inspector
       Inspect()
-    ]
+    ],
+
+    server: {
+      host: true
+    }
   } as UserConfig
 })

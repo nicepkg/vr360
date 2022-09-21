@@ -1,8 +1,8 @@
 <template>
-  <div class="relative w-80vw h-800px overflow-hidden">
+  <div class="relative w-100vw h-100vh overflow-hidden">
     <div
       ref="tipRef"
-      class="tip absolute cursor-pointer z-99 p-4 flex flex-col w-120px h-60px justify-center bg-black bg-op-50 text-white"
+      class="tip absolute cursor-pointer z-99 p-4 flex flex-col w-240px h-60px justify-center bg-black bg-op-50 text-white"
       :style="{
         left: tipLeft + 'px',
         top: tipTop + 50 + 'px',
@@ -12,7 +12,7 @@
       <div class="tip-title font-bold">{{ tipTitle }}</div>
       <div class="tip-content">{{ tipContent }}</div>
     </div>
-    <div ref="containerRef" class="container w-full h-full"></div>
+    <div ref="containerRef" class="w-full h-full"></div>
   </div>
 </template>
 
@@ -56,15 +56,15 @@ onMounted(() => {
           {
             position: {x: -10, y: -4, z: 40},
             content: {
-              title: '提示标题1',
-              text: '内容'
+              title: '席梦思小床',
+              text: '想睡随时睡'
             }
           },
           {
-            position: {x: -20, y: 0, z: 40},
+            position: {x: 0, y: -10, z: 40},
             content: {
-              title: '提示标题2',
-              text: '内容'
+              title: '豪华跑车',
+              text: '比奥迪还贵的豪华跑车'
             }
           }
         ],
@@ -96,17 +96,17 @@ onMounted(() => {
         ],
         tips: [
           {
-            position: {x: -10, y: -4, z: 40},
+            position: {x: -2, y: -25, z: 40},
             content: {
-              title: '提示标题1',
-              text: '内容'
+              title: '香奈儿垃圾桶',
+              text: '里面装着主人不用的奢侈品'
             }
           },
           {
             position: {x: -20, y: 0, z: 40},
             content: {
-              title: '提示标题2',
-              text: '内容'
+              title: '宇宙牌冰箱',
+              text: '装着超级多零食'
             }
           }
         ],
