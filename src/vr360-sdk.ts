@@ -38,10 +38,25 @@ function addListenerToThreeObject(
       ['mousemove', 'touchmove'].includes(eventName) &&
       mouseoverPreIntersect?.object?.uuid !== firstIntersect?.object?.uuid
     ) {
-      // 在 mousemove 事件时, 并且本次鼠标指中的 three 对象和上一个对象不相同时，触发上个对象 mouseout 事件和本次对象 mouseover 事件
-      mouseoverPreIntersect?.object?.dispatchEvent?.({type: 'mouseout', intersect: mouseoverPreIntersect})
+      // 在 mousemove 事件时, 并且本次鼠标指中的 three 对象和上一个对象不相同时
+      // 触发上个 hover 对象的 mouseout 事件
+      mouseoverPreIntersect?.object?.dispatchEvent?.({
+        type: 'mouseout',
+        intersect: mouseoverPreIntersect,
+        sourceEvent: event
+      })
       mouseoverPreIntersect = firstIntersect
-      firstIntersect?.object?.dispatchEvent?.({type: 'mouseover', intersect: firstIntersect})
+
+      // 设置鼠标样式
+      const cursor = firstIntersect?.object?.userData.cursor || 'default'
+      if (renderElement && renderElement.style.cursor !== cursor) renderElement.style.cursor = cursor
+
+      // 触发本次 hover 对象的 mouseover 事件
+      firstIntersect?.object?.dispatchEvent?.({
+        type: 'mouseover',
+        intersect: firstIntersect,
+        sourceEvent: event
+      })
     }
 
     // 射线范围内没有东西，终止流程
@@ -51,7 +66,11 @@ function addListenerToThreeObject(
       console.log(`当前点击位置: x=${firstIntersect.point.x}, y=${firstIntersect.point.y}, z=${firstIntersect.point.z}`)
     }
 
-    firstIntersect?.object?.dispatchEvent?.({type: eventName, intersect: firstIntersect})
+    firstIntersect?.object?.dispatchEvent?.({
+      type: eventName,
+      intersect: firstIntersect,
+      sourceEvent: event
+    })
   }
 
   events.forEach(eventName => {
@@ -105,6 +124,14 @@ export interface HideTipEvent {
   tip: Tip
 }
 
+export interface ClickTipEvent {
+  tip: Tip
+}
+
+export interface AfterSwitchSpaceEvent {
+  spaceConfig: SpaceConfig
+}
+
 export interface Vr360Events {
   /**
    * 每帧更新回调
@@ -120,25 +147,29 @@ export interface Vr360Events {
    * 隐藏提示时的回调
    */
   hideTip: (e: HideTipEvent) => void
+
+  /**
+   * 点击提示时的回调
+   */
+  clickTip: (e: ClickTipEvent) => void
+
+  /**
+   * 跳转空间时的回调
+   */
+  afterSwitchSpace: (e: AfterSwitchSpaceEvent) => void
 }
 
-export interface Position {
+export interface Vector3Position {
   x: number
   y: number
   z: number
 }
 
-export interface Scale {
-  x: number
-  y: number
-  z: number
-}
+export type Position = Vector3Position
 
-export interface HotPoint {
-  position: Position
-  scale?: Scale
-  targetSpaceId: string
-}
+export type Scale = Vector3Position
+
+export type Rotate = Vector3Position
 
 export interface CubeSpaceTextureUrls {
   left: string
@@ -151,7 +182,9 @@ export interface CubeSpaceTextureUrls {
 
 export interface Tip {
   position: Position
+  targetSpaceId?: string
   scale?: Scale
+  rotate?: Rotate
   textureUrl?: string
   [key: string]: any
 }
@@ -159,7 +192,6 @@ export interface Tip {
 export interface SpaceConfig {
   spaceId: string
   cameraPosition?: Position
-  hotPoints?: HotPoint[]
   tips?: Tip[]
   cubeSpaceTextureUrls: CubeSpaceTextureUrls
 }
@@ -233,11 +265,6 @@ export class Vr360 extends EventEmitter<Vr360Events> {
   public spacesConfig: SpaceConfig[]
 
   /**
-   * 小白点贴图链接
-   */
-  public hotPointTextureUrl: string
-
-  /**
    * 中心点网格
    */
   public centerPointMesh!: THREE.Mesh
@@ -273,7 +300,7 @@ export class Vr360 extends EventEmitter<Vr360Events> {
 
   constructor(options: Vr360Options) {
     super()
-    const {container, hotPointTextureUrl, centerPointTextureUrl, tipContainer, initSpaceId, spacesConfig = []} = options
+    const {container, centerPointTextureUrl, tipContainer, initSpaceId, spacesConfig = []} = options
 
     this.textureCacheLoader = new TextureCacheLoader()
     this.container = container
@@ -284,12 +311,9 @@ export class Vr360 extends EventEmitter<Vr360Events> {
     this.controls = this.createControls()
     this.container.appendChild(this.renderer.domElement)
 
-    this.spacesConfig = spacesConfig
-
-    this.hotPointTextureUrl = hotPointTextureUrl || 'picture/hotpot.png'
-    this.centerPointTextureUrl = centerPointTextureUrl || 'picture/center.png'
-
     this.tipContainer = tipContainer
+    this.spacesConfig = spacesConfig
+    this.centerPointTextureUrl = centerPointTextureUrl || 'picture/center.png'
 
     // 为 mesh 添加事件支持
     addListenerToThreeObject(() => {
@@ -310,7 +334,7 @@ export class Vr360 extends EventEmitter<Vr360Events> {
   /**
    * 一次性加载并配置里所有的纹理图片
    */
-  private cacheAllTextures() {
+  public cacheAllTextures() {
     const urls = this.spacesConfig.reduce((urls, spaceConfig) => {
       const {cubeSpaceTextureUrls} = spaceConfig
       return [...urls, ...Object.values(cubeSpaceTextureUrls)]
@@ -323,7 +347,7 @@ export class Vr360 extends EventEmitter<Vr360Events> {
    * @param url 纹理图片链接
    * @returns 纹理
    */
-  public getTextureFromUrl(url: string) {
+  private getTextureFromUrl(url: string) {
     return this.textureCacheLoader.load(url)
   }
 
@@ -368,21 +392,10 @@ export class Vr360 extends EventEmitter<Vr360Events> {
     const spaceConfig = this.spacesConfig.find(item => String(item.spaceId || '') === String(targetSpaceId))
     if (!spaceConfig) return
 
-    const {cameraPosition, hotPoints = [], cubeSpaceTextureUrls, tips = []} = spaceConfig
-
-    // 调整相机位置
-    // this.camera.position.set(cameraPosition?.x ?? 0, cameraPosition?.y ?? 0, cameraPosition?.z ?? 0)
+    const {cameraPosition, cubeSpaceTextureUrls, tips = []} = spaceConfig
 
     // 场景元素列表
     const sceneChildren: THREE.Object3D[] = []
-
-    // 创建小白点
-    const hotPointMeshes = hotPoints.map(hotPoint => {
-      const mesh = this.createHotPointMesh(hotPoint)
-      mesh.userData.spaceId = targetSpaceId
-      return mesh
-    })
-    sceneChildren.push(...hotPointMeshes)
 
     // 创建提示精灵
     if (this.tipContainer) {
@@ -410,16 +423,20 @@ export class Vr360 extends EventEmitter<Vr360Events> {
     const handleCompleteTween = () => {
       // 把场景元素列表添加到场景
       this.scene.add(...sceneChildren)
+
+      // 触发切换空间完成事件
+      this.emit('afterSwitchSpace', {spaceConfig: spaceConfig})
+    }
+
+    // 下一个镜头的位置
+    const targetPosition: Position = {
+      x: cameraPosition?.x ?? 0,
+      y: cameraPosition?.y ?? 0,
+      z: cameraPosition?.z ?? 0
     }
 
     if (clickPosition) {
       // 用 tween.js 添加镜头切换动画
-      const targetPosition: Position = {
-        x: cameraPosition?.x ?? 0,
-        y: cameraPosition?.y ?? 0,
-        z: cameraPosition?.z ?? 0
-      }
-
       const fromPosition: Position = {
         x: targetPosition.x - (clickPosition.x - this.camera.position.x),
         y: targetPosition.y - (clickPosition.y - this.camera.position.y),
@@ -436,6 +453,7 @@ export class Vr360 extends EventEmitter<Vr360Events> {
           handleCompleteTween()
         })
     } else {
+      this.camera.position.set(targetPosition.x, targetPosition.y, targetPosition.z)
       handleCompleteTween()
     }
   }
@@ -443,7 +461,7 @@ export class Vr360 extends EventEmitter<Vr360Events> {
   /**
    * 创建正方体空间 mesh
    */
-  public createCubeSpaceMesh(cubeSpaceTextureUrls: CubeSpaceTextureUrls) {
+  private createCubeSpaceMesh(cubeSpaceTextureUrls: CubeSpaceTextureUrls) {
     // 创建空间
     const boxGeometry = new THREE.BoxGeometry(100, 100, 100)
 
@@ -460,12 +478,9 @@ export class Vr360 extends EventEmitter<Vr360Events> {
    * 创建正方体空间材料
    * @param cubeSpaceTextureUrls 空间贴图
    */
-  public createCubeSpaceMaterials(cubeSpaceTextureUrls: CubeSpaceTextureUrls) {
+  private createCubeSpaceMaterials(cubeSpaceTextureUrls: CubeSpaceTextureUrls) {
     const directions = ['right', 'left', 'top', 'bottom', 'front', 'back'] as const
     const boxMaterials: THREE.MeshBasicMaterial[] = directions.map(direction => {
-      // const texture = new THREE.TextureLoader().load(
-      //   cubeSpaceTextureUrls[direction as keyof typeof cubeSpaceTextureUrls]
-      // )
       const texture = this.getTextureFromUrl(cubeSpaceTextureUrls[direction as keyof typeof cubeSpaceTextureUrls])
       return new THREE.MeshBasicMaterial({map: texture})
     })
@@ -477,6 +492,7 @@ export class Vr360 extends EventEmitter<Vr360Events> {
    */
   public render() {
     requestAnimationFrame(this.render.bind(this))
+    this.controls?.update()
     this.handleUpdate()
     TWEEN.update()
   }
@@ -531,9 +547,9 @@ export class Vr360 extends EventEmitter<Vr360Events> {
     const controls = new OrbitControls(this.camera, this.renderer.domElement)
     controls.listenToKeyEvents(window)
     controls.autoRotate = false
-    controls.dampingFactor = 0.05
+    controls.autoRotateSpeed = 0.5
     controls.enableZoom = true
-    controls.enableDamping = true
+    controls.enableDamping = false
     controls.enablePan = true
     controls.enableRotate = true
     controls.minDistance = 1
@@ -549,49 +565,29 @@ export class Vr360 extends EventEmitter<Vr360Events> {
   }
 
   /**
-   * 创建白点用于点击跳转场景
-   * @param hotPoint 小白点配置
-   * @returns 返回小白点 mesh
-   */
-  private createHotPointMesh(hotPoint: HotPoint) {
-    const {position, scale, targetSpaceId} = hotPoint
-    const geometry = new THREE.CircleGeometry(4, 20, 0, 2 * Math.PI)
-    geometry.scale(scale?.x ?? -1, scale?.y ?? 1, scale?.z ?? 1)
-    const hotPointMesh = new THREE.Mesh(
-      geometry,
-      new THREE.MeshBasicMaterial({
-        // map: new THREE.TextureLoader().load(this.hotPointTextureUrl),
-        map: this.getTextureFromUrl(this.hotPointTextureUrl),
-        transparent: true
-      })
-    )
-
-    hotPointMesh.rotation.x = Math.PI / 2
-    hotPointMesh.position.set(position.x, position.y, position.z)
-
-    hotPointMesh.addEventListener('click', e => {
-      const intersect = e.intersect as THREE.Intersection
-      console.log('调转到空间', targetSpaceId)
-      this.switchSpace(targetSpaceId, intersect.point)
-    })
-
-    return hotPointMesh
-  }
-
-  /**
    * 创建提示精灵
    * @param tip 单个提示配置
    * @returns 返回提示精灵
    */
-  public createTipSprite(tip: Tip, tipContainer: HTMLElement) {
-    const {position, textureUrl = 'picture/tip.png', scale, ...otherTipInfo} = tip
-    // const texture = new THREE.TextureLoader().load(textureUrl)
+  private createTipSprite(tip: Tip, tipContainer: HTMLElement) {
+    const {position, textureUrl = 'picture/tip.png', scale, rotate, targetSpaceId} = tip
     const texture = this.getTextureFromUrl(textureUrl)
     const material = new THREE.SpriteMaterial({map: texture})
     const sprite = new THREE.Sprite(material)
+
+    // 调整位置大小旋转角度
     sprite.scale.set(scale?.x ?? 3, scale?.y ?? 3, scale?.z ?? 3)
     sprite.position.set(position.x, position.y, position.z)
-    sprite.userData = otherTipInfo
+    if (rotate) {
+      sprite.rotateX(rotate.x)
+      sprite.rotateY(rotate.y)
+      sprite.rotateZ(rotate.z)
+    }
+
+    // 设置鼠标样式
+    sprite.userData.cursor = 'pointer'
+
+    // 鼠标 hover 时展示提示
     sprite.addEventListener('mouseover', e => {
       const intersect = e.intersect as THREE.Intersection
       const containerHalfWidth = this.containerWidth / 2
@@ -618,12 +614,29 @@ export class Vr360 extends EventEmitter<Vr360Events> {
       })
     })
 
+    // 鼠标移出时移除提示
     sprite.addEventListener('mouseout', () => {
       console.log('隐藏提示', {tip})
       this.emit('hideTip', {
         tip
       })
     })
+
+    sprite.addEventListener('click', e => {
+      this.emit('clickTip', {tip})
+
+      if (targetSpaceId) {
+        // 存在目标空间 id，点击跳转
+        // 跳转时隐藏提示
+        this.emit('hideTip', {
+          tip
+        })
+        const intersect = e.intersect as THREE.Intersection
+        console.log('调转到空间', targetSpaceId, e.sourceEvent)
+        this.switchSpace(targetSpaceId, intersect.point)
+      }
+    })
+
     return sprite
   }
 
@@ -637,7 +650,6 @@ export class Vr360 extends EventEmitter<Vr360Events> {
       this.centerPointMesh = new THREE.Mesh(
         geometry,
         new THREE.MeshBasicMaterial({
-          // map: new THREE.TextureLoader().load(this.centerPointTextureUrl),
           map: this.getTextureFromUrl(this.centerPointTextureUrl),
           transparent: true,
           opacity: 0.4
