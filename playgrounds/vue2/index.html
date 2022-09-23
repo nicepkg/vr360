@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="/favicon.ico" />
+  <title>Vue2 App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <script>
+    (function () {
+      // ios safari 禁止缩放
+      document.addEventListener('touchmove', function(event) {
+        event = event.originalEvent || event;
+        if(event.scale !== undefined && event.scale !== 1) {
+          event.preventDefault();
+        }
+      }, false);
+    })()
+  </script>
+</head>
+<body class="font-sans">
+  <noscript>
+    <strong>We're sorry but web-cli doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

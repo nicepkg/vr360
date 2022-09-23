@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig-base.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist",
+    "types": ["vite/client", "vitest", "vitest/globals"],
+    "paths": {
+      "@/*": ["./src/*"],
+      "@test/*": ["./test/*"]
+    }
+  },
+  "include": ["./src/**/*", "./scripts/**/*", "./types/**/*", "./test/**/*", "./*.js", "./*.ts"],
+  "exclude": ["node_modules", "dist"]
+}

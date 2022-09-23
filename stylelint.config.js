@@ -9,6 +9,7 @@ module.exports = /** @type { Partial<import('stylelint').Config> } */ ({
     'stylelint-config-recommended-vue',
     'stylelint-prettier/recommended'
   ],
+  plugins: ['stylelint-declaration-block-no-ignored-properties'],
   overrides: [
     {
       files: ['**/*.(less|css|html|vue)'],

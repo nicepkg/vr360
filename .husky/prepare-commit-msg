@@ -1,5 +1,6 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-echo "请不要直接执行 git commit ，改成 npm run commit"
-echo "commit 填写规范查看 https://juejin.cn/post/6934292467160514567#heading-3"
+echo "do not 'git commit' please run 'pnpm commit' instead"
+# echo "commit lint please see https://juejin.cn/post/6934292467160514567#heading-3"
+echo "See .github/commit-convention.md for more details."

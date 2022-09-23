@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "esnext",
+    "typeRoots": ["./node_modules/@types", "types"],
+    "lib": ["dom", "esnext", "dom.iterable", "scripthost"],
+    "strict": true,
+    "esModuleInterop": true,
+    "jsx": "preserve",
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "noUnusedLocals": false,
+    "noImplicitAny": true,
+    "noUnusedParameters": false,
+    "noImplicitThis": true,
+    "noEmitOnError": false,
+    "strictNullChecks": true,
+    "allowJs": true,
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "exclude": ["./node_modules/**/*", "./lib/**/*", "./es/**/*", "./dist/**/*"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS",
+      "resolveJsonModule": true,
+      "noImplicitAny": false,
+      "noEmitOnError": false,
+      "noUnusedLocals": false,
+      "noUnusedParameters": false
+    }
+  }
+}

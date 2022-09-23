@@ -1,0 +1,25 @@
+{
+  "name": "playground-vue3",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -r -k -g 'npm:build:deps' 'npm:dev:vite'",
+    "dev:vite": "vite",
+    "build": "vite build",
+    "build:deps": "pnpm run build:watch --filter @nicepkg/vr360-core",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "@nicepkg/vr360-core": "workspace:*",
+    "vue": "^3.2.39",
+    "vue-demi": "*"
+  },
+  "devDependencies": {
+    "@unocss/reset": "^0.45.22",
+    "@vitejs/plugin-vue": "^3.1.0",
+    "@vitejs/plugin-vue-jsx": "^2.0.1",
+    "concurrently": "*",
+    "typescript": "*",
+    "unocss": "^0.45.22",
+    "vite": "*"
+  }
+}

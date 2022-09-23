@@ -1,0 +1,27 @@
+{
+  "name": "playground-vue2",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -r -k -g 'npm:build:deps' 'npm:dev:vite'",
+    "dev:vite": "vite",
+    "build": "vite build",
+    "build:deps": "pnpm run build:watch --filter @nicepkg/vr360-core",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "@nicepkg/vr360-core": "workspace:*",
+    "@vue/composition-api": "^1.7.0",
+    "vue": "2.6.14",
+    "vue-demi": "*",
+    "vue-template-compiler": "2.6.14"
+  },
+  "devDependencies": {
+    "@unocss/reset": "^0.45.22",
+    "@vue/runtime-dom": "latest",
+    "concurrently": "*",
+    "unocss": "^0.45.22",
+    "unplugin-vue2-script-setup": "^0.11.3",
+    "vite": "^2.9.9",
+    "vite-plugin-vue2": "^2.0.2"
+  }
+}

@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question
+    url: https://github.com/nicepkg/vr360/discussions/new?category=Q-A
+    about: Ask a question or discuss about vr360
+  - name: Ideas
+    url: https://github.com/nicepkg/vr360/discussions/new?category=Ideas
+    about: Start a discussion to improve vr360
+  - name: GitHub Sponsors
+    url: https://github.com/sponsors/2214962083
+    about: Like this project? Please consider supporting the author.

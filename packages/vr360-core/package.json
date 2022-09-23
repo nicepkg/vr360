@@ -1,0 +1,67 @@
+{
+  "name": "@nicepkg/vr360-core",
+  "version": "0.1.0",
+  "description": "",
+  "keywords": [
+    "vr360-core",
+    "nicepkg",
+    "webgl",
+    "threejs"
+  ],
+  "author": "yangjinming <https://github.com/2214962083>",
+  "funding": "https://github.com/sponsors/2214962083",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "pnpm type-check &&esno ./scripts/build.ts",
+    "build:watch": "cross-env WATCH=true pnpm build",
+    "clean": "rimraf ./dist/**/*",
+    "dev": "esno ./src/playground.ts",
+    "test": "vitest run --silent --passWithNoTests",
+    "test:watch": "pnpm test -- --watch",
+    "type-check": "tsc --noEmit"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "unpkg": "./dist/index.min.umd.js",
+  "jsdelivr": "./dist/index.min.umd.js",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./*": "./*"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicepkg/vr360.git",
+    "directory": "packages/vr360-core"
+  },
+  "bugs": {
+    "url": "https://github.com/nicepkg/vr360/issues"
+  },
+  "homepage": "https://github.com/nicepkg/vr360#readme",
+  "peerDependencies": {
+    "three": "*"
+  },
+  "dependencies": {
+    "@tweenjs/tween.js": "^18.6.4",
+    "eventemitter3": "^4.0.7"
+  },
+  "devDependencies": {
+    "@nicepkg/vr360-shared": "workspace:*",
+    "@types/three": "^0.144.0",
+    "@types/node": "*",
+    "esno": "*",
+    "three": "^0.144.0",
+    "typescript": "*",
+    "vite": "*",
+    "vitest": "*"
+  }
+}

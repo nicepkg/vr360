@@ -1,0 +1,77 @@
+name: Docs
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+  pull_request:
+    branches:
+      - main
+      - master
+  # workflow_run:
+  #   workflows: ['Test']
+  #   types:
+  #     - completed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      TURBO_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      TURBO_TEAM: ${{ secrets.VERCEL_TEAM }}
+      TURBO_CACHE_KEY: ubuntu-latest-16 # reuse cache key from ci workflow
+      NODE_OPTIONS: '--max_old_space_size=4096'
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.2.1
+
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+          registry-url: https://registry.npmjs.org/
+          cache: pnpm
+
+      - name: Install Dependencies and build all packages
+        run: pnpm bootstrap
+
+      # - name: deploy docs to vercel
+      #   uses: BetaHuhn/deploy-to-vercel-action@v1
+      #   # see: https://github.com/BetaHuhn/deploy-to-vercel-action
+      #   with:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      #     VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      #     VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_DOC_SITE }}
+      #     # for team settings
+      #     VERCEL_SCOPE: ${{ secrets.VERCEL_ORG_ID }}
+      #     # the docs build dist folder
+      #     WORKING_DIRECTORY: ./packages/doc/.vuepress/dist
+      #     # bind domains
+      #     # ALIAS_DOMAINS: |
+      #     #   docs.vr360.com
+      #     #   docs.vr360.cn
+
+      - name: deploy docs to vercel
+        uses: amondnet/vercel-action@v20
+        # see: https://github.com/amondnet/vercel-action
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_DOC_SITE }}
+          # for team settings
+          scope: ${{ secrets.VERCEL_ORG_ID }}
+          # just like npx vercel --prod
+          vercel-args: '--prod'
+          # the docs build dist folder
+          working-directory: ./packages/doc/.vuepress/dist
+          # bind domains
+          # alias-domains: |
+          #   docs.vr360.com
+          #   docs.vr360.cn

@@ -1,92 +1,162 @@
 {
-  "name": "vr-360",
+  "name": "vr360",
+  "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@7.4.0",
+  "packageManager": "pnpm@7.0.0",
+  "author": "yangjinming",
+  "description": "",
   "engines": {
     "node": ">=14",
-    "pnpm": ">=6"
+    "pnpm": ">=7"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production vite build",
+    "bootstrap": "pnpm i &&pnpm build:all",
+    "build": "esno ./scripts/build.ts",
+    "build:all": "turbo run build",
+    "check-update": "esno ./scripts/check-update.ts",
+    "clean": "rimraf **/node_modules/**",
     "commit": "git add . &&git-cz",
-    "dev": "cross-env NODE_ENV=development vite --port 3333",
     "lint": "pnpm lint:es &&pnpm lint:css",
     "lint:change": "lint-staged",
     "lint:css": "stylelint --aei --fix ./**/*.{vue,css,sass,scss,less,html} --cache --cache-location node_modules/.cache/stylelint/",
-    "lint:es": "eslint --fix . --ext .jsx,.js,.vue,.ts,.tsx,.json",
+    "lint:es": "eslint --fix . --ext .jsx,.js,.vue,.ts,.tsx",
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky install",
-    "preview": "cross-env NODE_ENV=production vite preview",
-    "typecheck": "vue-tsc --noEmit"
-  },
-  "dependencies": {
-    "@tweenjs/tween.js": "^18.6.4",
-    "@types/nprogress": "^0.2.0",
-    "@vueuse/core": "^9.2.0",
-    "@vueuse/head": "^0.7.9",
-    "eventemitter3": "^4.0.7",
-    "lodash-es": "^4.17.21",
-    "moment": "^2.29.4",
-    "nprogress": "^0.2.0",
-    "three": "^0.144.0",
-    "vue": "^3.2.39",
-    "vue-demi": "^0.13.11"
+    "release": "esno ./scripts/release.ts",
+    "test": "pnpm run -r test"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
-    "@iconify-json/carbon": "^1.1.7",
     "@types/eslint": "^8.4.6",
     "@types/lodash-es": "^4.17.6",
-    "@types/node": "^18.7.16",
+    "@types/node": "*",
     "@types/prettier": "^2.7.0",
-    "@types/three": "^0.144.0",
     "@typescript-eslint/eslint-plugin": "^5.36.2",
     "@typescript-eslint/parser": "^5.36.2",
-    "@vitejs/plugin-vue": "^3.1.0",
-    "@vitejs/plugin-vue-jsx": "^2.0.1",
     "@vue/eslint-config-typescript": "^11.0.1",
+    "bumpp": "^8.2.1",
+    "chalk": "4.1.2",
     "commitizen": "^4.2.5",
+    "confusing-browser-globals": "^1.0.11",
     "conventional-changelog-cli": "^2.2.2",
     "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
-    "dotenv": "^16.0.2",
-    "dotenv-expand": "^9.0.0",
     "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^3.5.0",
+    "eslint-plugin-eslint-comments": "3.2.0",
     "eslint-plugin-html": "^7.1.0",
     "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest-dom": "^4.0.2",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-testing-library": "^5.6.0",
     "eslint-plugin-vue": "^9.4.0",
-    "esno": "^0.16.3",
+    "eslint-plugin-unicorn": "43.0.2",
+    "esno": "*",
+    "globby": "11.1.0",
     "husky": "^8.0.1",
     "less": "^4.1.3",
     "lint-staged": "^13.0.3",
+    "npm-check-updates": "^16.0.6",
+    "npm-run-all": "^4.1.5",
+    "ora": "6.1.2",
+    "plop": "^3.1.1",
     "postcss": "^8.4.16",
     "postcss-html": "^1.5.0",
     "postcss-less": "^6.0.0",
     "prettier": "^2.7.1",
-    "rollup": "^2.79.0",
-    "rollup-plugin-visualizer": "^5.8.1",
+    "react": "*",
+    "rimraf": "^3.0.2",
     "stylelint": "^14.11.0",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-recess-order": "^3.0.0",
     "stylelint-config-recommended": "^9.0.0",
     "stylelint-config-recommended-vue": "^1.4.0",
     "stylelint-config-standard": "^28.0.0",
+    "stylelint-declaration-block-no-ignored-properties": "^2.5.0",
     "stylelint-less": "^1.0.6",
     "stylelint-order": "^5.0.0",
     "stylelint-prettier": "^2.0.0",
-    "terser": "^5.15.0",
-    "typescript": "^4.7.4",
-    "unocss": "^0.45.18",
-    "vite": "^3.1.0",
-    "vite-plugin-inspect": "^0.7.1",
-    "vue-tsc": "^0.40.13"
+    "turbo": "^1.4.4",
+    "typescript": "*"
+  },
+  "pnpm": {
+    "overrides": {
+      "@testing-library/dom": "8.17.1",
+      "@testing-library/jest-dom": "5.16.5",
+      "@testing-library/react": "12.1.5",
+      "@types/node": "18.7.14",
+      "@types/react": "18.0.18",
+      "@types/react-dom": "18.0.6",
+      "@types/react-router-dom": "5.3.3",
+      "@vitejs/plugin-react": "2.0.1",
+      "concurrently": "7.1.0",
+      "conventional-changelog-cli": "2.2.2",
+      "esno": "0.16.3",
+      "react": "17.0.2",
+      "react-dom": "17.0.2",
+      "react-router-dom": "6.3.0",
+      "typescript": "4.7.4",
+      "vite": "3.0.9",
+      "vitest": "0.22.1",
+      "vue-demi": "0.12.5"
+    },
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "react": "17",
+        "react-dom": "17",
+        "typescript": "4.8"
+      }
+    },
+    "allowedDeprecatedVersions": {
+      "stable": "*",
+      "core-js": "*",
+      "mkdirp": "*",
+      "uuid": "*",
+      "querystring": "*",
+      "sane": "*",
+      "chokidar": "*",
+      "fsevents": "*",
+      "source-map-resolve": "*",
+      "source-map-url": "*",
+      "resolve-url": "*",
+      "urix": "*"
+    },
+    "packageExtensions": {
+      "stylelint-config-recommended-vue": {
+        "dependencies": {
+          "postcss-html": "^1.4.1"
+        }
+      },
+      "vue-template-compiler": {
+        "devDependencies": {
+          "vue": "^2.6.14"
+        },
+        "peerDependencies": {
+          "vue": "^2.6.14"
+        }
+      }
+    }
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

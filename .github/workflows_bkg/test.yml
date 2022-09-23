@@ -1,0 +1,52 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+  pull_request:
+    branches:
+      - main
+      - master
+  # workflow_run:
+  #   workflows: ['Lint']
+  #   types:
+  #     - completed
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    env:
+      TURBO_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      TURBO_TEAM: ${{ secrets.VERCEL_TEAM }}
+      TURBO_CACHE_KEY: ${{ matrix.os }}-${{ matrix.node-version }}
+      NODE_OPTIONS: '--max_old_space_size=4096'
+    strategy:
+      matrix:
+        node-version: [14, 16]
+        os: [ubuntu-latest, macOS-latest]
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.2.1
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org/
+          cache: pnpm
+
+      - name: Install Dependencies and build all packages
+        run: pnpm bootstrap
+
+      # - name: Build
+      #   run: pnpm run build
+
+      - name: Test
+        run: pnpm run test

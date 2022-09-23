@@ -1,0 +1,137 @@
+{
+  "name": "@nicepkg/vr360-shared",
+  "version": "0.1.0",
+  "description": "A shared package of internal utility functions, including build and test functions.",
+  "keywords": [
+    "vr360-shared",
+    "nicepkg",
+    "utils"
+  ],
+  "author": "yangjinming <https://github.com/2214962083>",
+  "funding": "https://github.com/sponsors/2214962083",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "pnpm type-check &&unbuild",
+    "build:watch": "pnpm build -- --stub",
+    "clean": "rimraf ./dist/**/*",
+    "type-check": "tsc --noEmit"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./*": "./*",
+    "./test-utils": {
+      "require": "./dist/test-utils.cjs",
+      "import": "./dist/test-utils.mjs",
+      "types": "./dist/test-utils.d.ts"
+    },
+    "./test-vue-utils": {
+      "require": "./dist/test-vue-utils.cjs",
+      "import": "./dist/test-vue-utils.mjs",
+      "types": "./dist/test-vue-utils.d.ts"
+    },
+    "./test-react-utils": {
+      "require": "./dist/test-react-utils.cjs",
+      "import": "./dist/test-react-utils.mjs",
+      "types": "./dist/test-react-utils.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicepkg/vr360.git",
+    "directory": "packages/vr360-shared"
+  },
+  "bugs": {
+    "url": "https://github.com/nicepkg/vr360/issues"
+  },
+  "homepage": "https://github.com/nicepkg/vr360#readme",
+  "peerDependencies": {
+    "vite": "*",
+    "vitest": "*",
+    "vue-demi": "*"
+  },
+  "peerDependenciesMeta": {
+    "vite": {
+      "optional": true
+    },
+    "vitest": {
+      "optional": true
+    },
+    "vue-demi": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    },
+    "react-router-dom": {
+      "optional": true
+    },
+    "@testing-library/jest-dom": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@testing-library/react": "*",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/fs-extra": "^9.0.13",
+    "@types/mockjs": "^1.0.6",
+    "@types/node": "*",
+    "@types/node-fetch": "^2.6.2",
+    "@types/rimraf": "^3.0.2",
+    "@vitejs/plugin-react": "^2.0.1",
+    "chalk": "4.1.2",
+    "fs-extra": "^10.1.0",
+    "globby": "11.1.0",
+    "mockjs": "^1.1.0",
+    "msw": "^0.39.2",
+    "node-fetch": "^3.2.10",
+    "ora": "5.4.1",
+    "rimraf": "^3.0.2",
+    "rollup-plugin-visualizer": "^5.8.0",
+    "unplugin-auto-import": "^0.11.2",
+    "vite-plugin-dts": "^1.4.1",
+    "vite-plugin-inspect": "^0.6.1",
+    "vite-plugin-mock": "^2.9.6",
+    "vite-plugin-svgr": "^2.2.1",
+    "vite-tsconfig-paths": "^3.5.0",
+    "vitest-fetch-mock": "0.2.1"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "*",
+    "@testing-library/jest-dom": "*",
+    "@types/react": "*",
+    "@types/react-dom": "*",
+    "@types/react-router-dom": "*",
+    "autoprefixer": "^10.4.8",
+    "conventional-changelog-cli": "*",
+    "cross-env": "^7.0.3",
+    "cssnano": "^5.1.13",
+    "esno": "*",
+    "postcss": "^8.4.16",
+    "react": "*",
+    "react-dom": "*",
+    "react-router-dom": "*",
+    "rollup": "^2.79.1",
+    "typescript": "*",
+    "unbuild": "^0.8.10",
+    "vite": "*",
+    "vitest": "*",
+    "vue": "^3.2.39",
+    "vue-demi": "*",
+    "vue2": "npm:vue@2.6.14"
+  }
+}
