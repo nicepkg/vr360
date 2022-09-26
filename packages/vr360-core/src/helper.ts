@@ -39,9 +39,10 @@ export function addListenerToThreeObject(
     event.preventDefault()
     const {camera, scene, renderer} = getDeps()
     if (!camera || !scene || !renderer) return
+    const renderDomBound = renderer.domElement.getBoundingClientRect()
 
-    mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1
-    mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1
+    mouse.x = ((event.clientX - renderDomBound.left) / renderer.domElement.clientWidth) * 2 - 1
+    mouse.y = -((event.clientY - renderDomBound.top) / renderer.domElement.clientHeight) * 2 + 1
 
     raycaster.setFromCamera(mouse, camera)
 

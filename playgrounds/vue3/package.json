@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "@nicepkg/vr360-core": "workspace:*",
+    "qs": "^6.11.0",
     "vue": "^3.2.39",
     "vue-demi": "*"
   },
   "devDependencies": {
+    "@types/qs": "^6.9.7",
     "@unocss/reset": "^0.45.22",
     "@vitejs/plugin-vue": "^3.1.0",
     "@vitejs/plugin-vue-jsx": "^2.0.1",

@@ -10,6 +10,11 @@ import defaultTipUrl from './assets/tips.png'
 
 export class Vr360 extends EventEmitter<Vr360Events> {
   /**
+   * 销毁队列
+   */
+  private destroyTasks: (() => void)[] = []
+
+  /**
    * texture 缓存器
    */
   private textureCacheLoader: TextureCacheLoader
@@ -141,9 +146,12 @@ export class Vr360 extends EventEmitter<Vr360Events> {
     }
     window.addEventListener('resize', resizeFn)
 
-    return () => {
+    const remove = () => {
       window.removeEventListener('resize', resizeFn)
     }
+
+    this.destroyTasks.push(remove)
+    return remove
   }
 
   /**
@@ -317,6 +325,13 @@ export class Vr360 extends EventEmitter<Vr360Events> {
     renderer.setClearColor(0xff_ff_ff, 1)
     renderer.setPixelRatio(window.devicePixelRatio)
     renderer.setSize(this.containerWidth, this.containerHeight)
+
+    this.destroyTasks.push(() => {
+      renderer.dispose()
+      renderer.forceContextLoss()
+      renderer.domElement.remove()
+    })
+
     return renderer
   }
 
@@ -443,5 +458,12 @@ export class Vr360 extends EventEmitter<Vr360Events> {
     }
 
     this.centerPointMesh.position.set(this.camera.position.x, this.camera.position.y - 20, this.camera.position.z)
+  }
+
+  /**
+   * 卸载实例
+   */
+  public destroy() {
+    this.destroyTasks.forEach(task => task())
   }
 }

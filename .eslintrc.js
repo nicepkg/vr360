@@ -50,6 +50,7 @@ module.exports = /** @type { import('eslint').Linter.Config } */ ({
     'unicorn/prefer-module': 'off',
     'unicorn/prefer-top-level-await': 'off',
     'unicorn/consistent-function-scoping': 'off',
+    'unicorn/no-array-for-each': 'off',
 
     /**
      * Adjust recommended rules

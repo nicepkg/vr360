@@ -27,6 +27,8 @@
   "less.lint.unknownAtRules": "ignore",
   "css.lint.unknownAtRules": "ignore",
 
+  "unocss.root": "playgrounds/vue3",
+
   "workbench.colorCustomizations": {
     "activityBar.background": "#252F38",
     "titleBar.activeBackground": "#34414F",
@@ -88,6 +90,7 @@
     "preinstall",
     "qrcode",
     "raycaster",
+    "Realsee",
     "redrun",
     "restapi",
     "Segi",
