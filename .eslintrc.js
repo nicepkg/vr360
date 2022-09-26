@@ -162,6 +162,8 @@ module.exports = /** @type { import('eslint').Linter.Config } */ ({
         '@typescript-eslint/non-nullable-type-assertion-style': 'off',
         '@typescript-eslint/no-unsafe-assignment': 'off',
         '@typescript-eslint/no-non-null-assertion': 'off',
+        '@typescript-eslint/no-unsafe-call': 'off',
+        '@typescript-eslint/no-unnecessary-type-assertion': 'off',
 
         // 'tsc' already handles this (https://typescript-eslint.io/docs/linting/troubleshooting/#eslint-plugin-import)
         'import/default': 'off',

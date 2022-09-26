@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-type-arguments */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import type {Ref} from 'vue'
 import {shallowRef, ref, watch} from 'vue'
