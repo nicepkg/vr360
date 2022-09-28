@@ -21,7 +21,7 @@
     <div class="flex flex-col border-1 rounded-10px p-4">
       <div
         v-for="(space, index) in spacesConfig"
-        :key="space.spaceId"
+        :key="space.id"
         class="w-full h-100px relative rounded-4px cursor-pointer"
         :class="{
           'mt-4': index > 0
@@ -30,8 +30,9 @@
       >
         <img class="w-full h-full object-cover rounded-4px object-cover" :src="space.cubeSpaceTextureUrls.left" />
         <DeleteIcon
+          v-if="spacesConfig && spacesConfig.length > 1"
           class="absolute top-2 right-2 z-1 color-white w-4 h-4"
-          @click="handleDeleteSpace(space)"
+          @click.stop="handleDeleteSpace(space)"
         ></DeleteIcon>
       </div>
     </div>
@@ -49,11 +50,12 @@ import {ref} from 'vue'
 const {vr360, spacesConfig} = useVr360({})
 
 function handleSwitchSpace(space: SpaceConfig) {
-  vr360.value?.switchSpace(space.spaceId)
+  vr360.value?.switchSpace(space.id)
 }
 
 function handleDeleteSpace(space: SpaceConfig) {
-  spacesConfig.value = spacesConfig.value!.filter(item => item.spaceId !== space.spaceId)
+  console.log('handleDeleteSpace', space, spacesConfig)
+  spacesConfig.value = spacesConfig.value!.filter(item => item.id !== space.id)
 }
 
 const realseeVrUrl = ref('')
@@ -70,7 +72,7 @@ async function handleAddScene() {
     spacesConfig.value = [
       ...spacesConfig.value!,
       {
-        spaceId: `space${spacesConfig.value!.length}`,
+        id: `space${spacesConfig.value!.length}`,
         cubeSpaceTextureUrls: textureUrls
       }
     ]

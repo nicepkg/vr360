@@ -16,7 +16,7 @@
     <div class="w-full h-100px flex items-center">
       <div
         v-for="space in spacesConfig"
-        :key="space.spaceId"
+        :key="space.id"
         class="w-140px h-70px rounded-4px cursor-pointer ml-4"
         @click="handleSwitchSpace(space)"
       >
@@ -46,14 +46,17 @@ let vr360: InstanceType<typeof Vr360>
 
 const spacesConfig = ref<SpaceConfig[]>([
   {
-    spaceId: 'roomA',
-    cameraPosition: {
-      x: 0,
-      y: 0,
-      z: 0
+    id: 'roomA',
+    camera: {
+      position: {
+        x: 0,
+        y: 0,
+        z: 0
+      }
     },
     tips: [
       {
+        id: '1',
         position: {x: 0, y: -10, z: 40},
         content: {
           title: '豪华跑车',
@@ -61,6 +64,7 @@ const spacesConfig = ref<SpaceConfig[]>([
         }
       },
       {
+        id: '2',
         textureUrl: 'picture/hotpot.png',
         targetSpaceId: 'roomB',
         position: {x: -10, y: -4, z: 40},
@@ -80,14 +84,17 @@ const spacesConfig = ref<SpaceConfig[]>([
     }
   },
   {
-    spaceId: 'roomB',
-    cameraPosition: {
-      x: 0,
-      y: 0,
-      z: 0
+    id: 'roomB',
+    camera: {
+      position: {
+        x: 0,
+        y: 0,
+        z: 0
+      }
     },
     tips: [
       {
+        id: '3',
         position: {x: -2, y: -25, z: 40},
         content: {
           title: '香奈儿垃圾桶',
@@ -95,6 +102,7 @@ const spacesConfig = ref<SpaceConfig[]>([
         }
       },
       {
+        id: '4',
         position: {x: -20, y: 0, z: 40},
         content: {
           title: '宇宙牌冰箱',
@@ -102,6 +110,7 @@ const spacesConfig = ref<SpaceConfig[]>([
         }
       },
       {
+        id: '5',
         textureUrl: 'picture/hotpot.png',
         targetSpaceId: 'roomA',
         position: {
@@ -127,7 +136,7 @@ const spacesConfig = ref<SpaceConfig[]>([
 ])
 
 function handleSwitchSpace(space: SpaceConfig) {
-  vr360.switchSpace(space.spaceId)
+  vr360.switchSpace(space.id)
 }
 
 onMounted(() => {

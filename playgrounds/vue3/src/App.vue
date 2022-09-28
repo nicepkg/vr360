@@ -18,7 +18,7 @@
         <!-- <div class="w-full h-100px flex items-center flex-shrink-0">
           <div
             v-for="space in spacesConfig"
-            :key="space.spaceId"
+            :key="space.id"
             class="w-140px h-70px rounded-4px cursor-pointer ml-4"
             @click="handleSwitchSpace(space)"
           >
@@ -48,14 +48,17 @@ const {tipContent, tipTitle, tipLeft, tipTop, showTip, vr360, spacesConfig} = us
   tipEl: tipRef,
   spacesConfig: [
     {
-      spaceId: 'roomA',
-      cameraPosition: {
-        x: 0,
-        y: 0,
-        z: 0
+      id: 'roomA',
+      camera: {
+        position: {
+          x: 0,
+          y: 0,
+          z: 0
+        }
       },
       tips: [
         {
+          id: '1',
           position: {x: 0, y: -10, z: 40},
           content: {
             title: '豪华跑车',
@@ -63,6 +66,7 @@ const {tipContent, tipTitle, tipLeft, tipTop, showTip, vr360, spacesConfig} = us
           }
         },
         {
+          id: '2',
           textureUrl: 'picture/hotpot.png',
           targetSpaceId: 'roomB',
           position: {x: -10, y: -4, z: 40},
@@ -82,14 +86,17 @@ const {tipContent, tipTitle, tipLeft, tipTop, showTip, vr360, spacesConfig} = us
       }
     },
     {
-      spaceId: 'roomB',
-      cameraPosition: {
-        x: 0,
-        y: 0,
-        z: 0
+      id: 'roomB',
+      camera: {
+        position: {
+          x: 0,
+          y: 0,
+          z: 0
+        }
       },
       tips: [
         {
+          id: '3',
           position: {x: -2, y: -25, z: 40},
           content: {
             title: '香奈儿垃圾桶',
@@ -97,6 +104,7 @@ const {tipContent, tipTitle, tipLeft, tipTop, showTip, vr360, spacesConfig} = us
           }
         },
         {
+          id: '4',
           position: {x: -20, y: 0, z: 40},
           content: {
             title: '宇宙牌冰箱',
@@ -104,6 +112,7 @@ const {tipContent, tipTitle, tipLeft, tipTop, showTip, vr360, spacesConfig} = us
           }
         },
         {
+          id: '5',
           textureUrl: 'picture/hotpot.png',
           targetSpaceId: 'roomA',
           position: {
@@ -129,7 +138,9 @@ const {tipContent, tipTitle, tipLeft, tipTop, showTip, vr360, spacesConfig} = us
   ]
 })
 
+console.log(spacesConfig)
+
 function handleSwitchSpace(space: SpaceConfig) {
-  vr360.value?.switchSpace(space.spaceId)
+  vr360.value?.switchSpace(space.id)
 }
 </script>

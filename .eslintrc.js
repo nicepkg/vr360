@@ -51,6 +51,7 @@ module.exports = /** @type { import('eslint').Linter.Config } */ ({
     'unicorn/prefer-top-level-await': 'off',
     'unicorn/consistent-function-scoping': 'off',
     'unicorn/no-array-for-each': 'off',
+    'unicorn/prefer-spread': 'off',
 
     /**
      * Adjust recommended rules
@@ -164,6 +165,7 @@ module.exports = /** @type { import('eslint').Linter.Config } */ ({
         '@typescript-eslint/no-non-null-assertion': 'off',
         '@typescript-eslint/no-unsafe-call': 'off',
         '@typescript-eslint/no-unnecessary-type-assertion': 'off',
+        '@typescript-eslint/prefer-ts-expect-error': 'off',
 
         // 'tsc' already handles this (https://typescript-eslint.io/docs/linting/troubleshooting/#eslint-plugin-import)
         'import/default': 'off',

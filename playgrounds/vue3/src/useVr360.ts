@@ -28,37 +28,37 @@ watch(
   [containerRef, tipRef, spacesConfig],
   () => {
     if (containerRef.value && tipRef.value && spacesConfig.value) {
-      // 销毁旧实例
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-      vr360.value?.destroy()
+      if (!vr360.value) {
+        console.log('创建 vr360实例')
+        vr360.value = new Vr360({
+          container: containerRef.value,
+          tipContainer: tipRef.value,
+          spacesConfig: spacesConfig.value
+        })
 
-      console.log('创建 vr360实例')
-      vr360.value = new Vr360({
-        container: containerRef.value,
-        tipContainer: tipRef.value,
-        spacesConfig: spacesConfig.value
-      })
+        // vr360.value.controls.autoRotate = true
 
-      vr360.value.controls.autoRotate = true
+        vr360.value.render()
 
-      vr360.value.render()
+        vr360.value.listenResize()
 
-      vr360.value.listenResize()
+        vr360.value.on('showTip', e => {
+          // vr360.value!.controls.autoRotate = false
+          const {top, left, tip} = e
+          showTip.value = true
+          tipLeft.value = left
+          tipTop.value = top
+          tipTitle.value = tip.content.title
+          tipContent.value = tip.content.text
+        })
 
-      vr360.value.on('showTip', e => {
-        vr360.value!.controls.autoRotate = false
-        const {top, left, tip} = e
-        showTip.value = true
-        tipLeft.value = left
-        tipTop.value = top
-        tipTitle.value = tip.content.title
-        tipContent.value = tip.content.text
-      })
-
-      vr360.value.on('hideTip', () => {
-        vr360.value!.controls.autoRotate = true
-        showTip.value = false
-      })
+        vr360.value.on('hideTip', () => {
+          // vr360.value!.controls.autoRotate = true
+          showTip.value = false
+        })
+      } else {
+        vr360.value.updateSpacesConfig(spacesConfig.value)
+      }
     }
   },
   {
