@@ -6,24 +6,15 @@ import {EventEmitter} from 'eventemitter3'
 import type {ConfigModelManager} from './index'
 import type {CubeSpaceTextureUrls, SpaceConfig} from '../types'
 import type {TipManagerEvents, TipManagerOptions} from './tip'
-import {TipManager} from './tip'
-
-/**
- * 完成跳转空间时的回调 event
- */
-export type AfterSwitchSpaceEvent = {
-  spaceConfig: SpaceConfig
-}
+import {tipEventNames, TipManager} from './tip'
 
 /**
  * 空间管理器事件列表
  */
-export type SpaceManagerEvents = {
-  /**
-   * 完成跳转空间时的回调
-   */
-  afterSwitchSpace: (e: AfterSwitchSpaceEvent) => void
-} & TipManagerEvents
+export type SpaceManagerEvents = TipManagerEvents
+
+export type SpaceEventName = keyof SpaceManagerEvents
+export const spaceEventNames: SpaceEventName[] = [...tipEventNames]
 
 export type SpaceManagerOptions = Omit<TipManagerOptions, 'tipContainer'> & {
   tipContainer?: HTMLElement
@@ -76,9 +67,8 @@ export class SpaceManager
       parent
     })
 
-    const tipManagerEvents: (keyof TipManagerEvents)[] = ['showTip', 'hideTip', 'clickTip', 'switchSpace']
-
-    tipManagerEvents.forEach(eventName => {
+    // 提示的事件继承
+    tipEventNames.forEach(eventName => {
       tipManager.on(eventName, e => {
         // @ts-ignore
         this.emit(eventName, e)

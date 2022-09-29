@@ -4,6 +4,16 @@ import type {ConfigModel} from './manager'
 import type {SpaceManagerEvents} from './manager/space'
 
 /**
+ * 完成跳转空间时的回调 event
+ */
+export type AfterSwitchSpaceEvent = {
+  /**
+   * 跳转的目标空间配置
+   */
+  spaceConfig: SpaceConfig
+}
+
+/**
  * vr360 暴露的自定义事件
  */
 export type Vr360Events = {
@@ -11,7 +21,12 @@ export type Vr360Events = {
    * 每帧更新回调
    */
   update: () => void
-} & SpaceManagerEvents
+
+  /**
+   * 完成跳转空间时的回调
+   */
+  afterSwitchSpace: (e: AfterSwitchSpaceEvent) => void
+} & Omit<SpaceManagerEvents, 'switchSpace'>
 
 /**
  * 通用坐标

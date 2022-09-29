@@ -88,6 +88,7 @@
     "pnpm",
     "poppable",
     "preinstall",
+    "prismjs",
     "qrcode",
     "raycaster",
     "Realsee",
@@ -97,6 +98,7 @@
     "semibold",
     "shiki",
     "Sname",
+    "solidjs",
     "stylelint",
     "svgr",
     "tabbar",
@@ -131,5 +133,6 @@
     "zhong",
     "ZLZYLX",
     "ZZMM"
-  ]
+  ],
+  "commentTranslate.targetLanguage": "zh-CN"
 }

@@ -1,3 +1,4 @@
+import {spaceEventNames, SpaceManager} from './manager/space'
 /* eslint-disable unicorn/no-array-callback-reference */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
@@ -8,8 +9,22 @@ import TWEEN from '@tweenjs/tween.js'
 import {EventEmitter} from 'eventemitter3'
 import {addListenerToThreeObject, convertMousePositionToThreePosition, TextureCacheLoader} from './helper'
 import type {Position, SpaceConfig, Vr360Events, Vr360Options} from './types'
-import type {SpaceManagerEvents} from './manager/space'
-import {SpaceManager} from './manager/space'
+import type {SpaceEventName} from './manager/space'
+
+export type Vr360EventName = keyof Vr360Events
+
+/**
+ * 继承的空间管理器事件列表
+ */
+const extendsSpaceEventNames = spaceEventNames.filter(eventName => !['switchSpace'].includes(eventName)) as Exclude<
+  SpaceEventName,
+  'switchSpace'
+>[]
+
+/**
+ * vr360 的事件列表
+ */
+export const vr360EventNames: Vr360EventName[] = [...extendsSpaceEventNames, 'update', 'afterSwitchSpace']
 
 export class Vr360 extends EventEmitter<Vr360Events> {
   /**
@@ -58,7 +73,7 @@ export class Vr360 extends EventEmitter<Vr360Events> {
   public controls: OrbitControls
 
   /**
-   * 提示的容器
+   * 提示容器
    */
   public tipContainer?: HTMLElement
 
@@ -171,7 +186,8 @@ export class Vr360 extends EventEmitter<Vr360Events> {
   }
 
   /**
-   * 更新 spaceConfig
+   * 更新 spacesConfig
+   * @param newSpacesConfig 新的空间配置
    */
   public updateSpacesConfig(newSpacesConfig: SpaceConfig[]): void {
     const oldSpacesConfig = this.spacesConfig
@@ -385,9 +401,7 @@ export class Vr360 extends EventEmitter<Vr360Events> {
     })
 
     // 空间事件继承
-    const spaceEvents: (keyof SpaceManagerEvents)[] = ['showTip', 'hideTip', 'clickTip', 'afterSwitchSpace']
-
-    spaceEvents.forEach(eventName => {
+    extendsSpaceEventNames.forEach(eventName => {
       spaceManager.on(eventName, e => {
         // @ts-ignore
         this.emit(eventName, e)
@@ -421,7 +435,7 @@ export class Vr360 extends EventEmitter<Vr360Events> {
   }
 
   /**
-   * 卸载实例
+   * 销毁实例
    */
   public destroy(): void {
     this.destroyTasks.forEach(task => task())

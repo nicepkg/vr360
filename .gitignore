@@ -9,6 +9,12 @@ node_modules
 *.log
 stats.html
 .vite-inspect
+.history
+**/.rollup.cache
+**/test/coverage
+tsconfig.tsbuildinfo
+**/.temp
+**/.cache
 
 # testing
 /coverage

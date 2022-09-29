@@ -79,6 +79,9 @@ export type TipManagerEvents = {
   switchSpace: (e: SwitchSpaceEvent) => void
 }
 
+export type TipEventName = keyof TipManagerEvents
+export const tipEventNames: TipEventName[] = ['showTip', 'hideTip', 'clickTip', 'switchSpace']
+
 export type TipManagerOptions = {
   /**
    * 容器

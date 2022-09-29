@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist",
-    "types": ["vite/client", "@vuepress/client/types", "monaco-editor/monaco"],
+    "types": ["vite/client", "@vuepress/client/types"],
     "paths": {
       "@/*": ["./.vuepress/*"]
     }

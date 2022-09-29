@@ -1,0 +1,21 @@
+:root {
+  // brand colors
+  --c-brand: #0c4dc4;
+  --c-brand-light: #0b3788;
+
+  scroll-behavior: smooth;
+}
+
+.sidebar-item.collapsible {
+  cursor: pointer;
+}
+
+html.dark {
+  // brand colors
+  --c-brand: #1fa8f8;
+  --c-brand-light: #3bb3f8;
+}
+
+.site-name.can-hide {
+  display: none;
+}
