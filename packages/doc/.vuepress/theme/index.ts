@@ -82,6 +82,7 @@ export const localTheme = (): Theme => {
       }
     }),
     alias: {
+      '@theme/Home.vue': pathResolve('components/Home.vue'),
       '@theme/HomeFeatures.vue': pathResolve('components/HomeFeatures.vue')
     }
   }

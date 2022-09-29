@@ -59,7 +59,7 @@
     "@types/three": "^0.144.0",
     "@types/node": "*",
     "esno": "*",
-    "three": "^0.144.0",
+    "three": "^0.145.0",
     "typescript": "*",
     "vite": "*",
     "vitest": "*"

@@ -1,3 +1,6 @@
+export * from './space'
+export * from './tip'
+
 export type ConfigModel = {
   id: string
 }

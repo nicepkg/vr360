@@ -15,6 +15,8 @@ export function copyFiles() {
     const pkgJson = pathResolve(packagePath, 'package.json')
     const license = pathResolve(packagePath, 'LICENSE')
 
+    if (!existsSync(pkgJson)) return
+
     const pkg: Record<string, string> = JSON.parse(readFileSync(pkgJson, 'utf8')) || {}
     if (pkg.private) return
     if (!existsSync(license)) copyFileSync(rootLicense, license)
@@ -24,6 +26,8 @@ export function copyFiles() {
 export function getPackagesName(type: 'public' | 'all') {
   return packagesPaths.reduce<string[]>((pkgNames, packagePath) => {
     const pkgJson = pathResolve(packagePath, 'package.json')
+
+    if (!existsSync(pkgJson)) return pkgNames
 
     const pkg: Record<string, string> = JSON.parse(readFileSync(pkgJson, 'utf8')) || {}
 

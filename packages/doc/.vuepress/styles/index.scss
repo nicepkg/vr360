@@ -6,16 +6,29 @@
   scroll-behavior: smooth;
 }
 
-.sidebar-item.collapsible {
-  cursor: pointer;
-}
-
 html.dark {
   // brand colors
   --c-brand: #1fa8f8;
   --c-brand-light: #3bb3f8;
 }
 
+.sidebar-item.collapsible {
+  cursor: pointer;
+}
+
 .site-name.can-hide {
   display: none;
+}
+
+body {
+  position: relative;
+}
+
+#app {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  min-width: 100vw;
+  min-height: 100vh;
 }
