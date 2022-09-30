@@ -3,7 +3,7 @@ import HomeContent from '@vuepress/theme-default/components/HomeContent.vue'
 import HomeFeatures from './HomeFeatures.vue'
 import HomeFooter from '@vuepress/theme-default/components/HomeFooter.vue'
 import HomeHero from '@vuepress/theme-default/components/HomeHero.vue'
-import VrBeijing from '../../components/examples/vr360-core-beijing.vue'
+import HomeVrBg from './HomeVrBg.vue'
 </script>
 
 <template>
@@ -13,7 +13,7 @@ import VrBeijing from '../../components/examples/vr360-core-beijing.vue'
     <HomeContent />
     <HomeFooter />
     <teleport to="body">
-      <VrBeijing :show-mask="true"></VrBeijing>
+      <HomeVrBg :show-mask="true"></HomeVrBg>
     </teleport>
   </main>
 </template>

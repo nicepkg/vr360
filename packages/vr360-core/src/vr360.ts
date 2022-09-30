@@ -7,8 +7,15 @@ import * as THREE from 'three'
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
 import TWEEN from '@tweenjs/tween.js'
 import {EventEmitter} from 'eventemitter3'
-import {addListenerToThreeObject, convertMousePositionToThreePosition, TextureCacheLoader} from './helper'
-import type {Position, SpaceConfig, Vr360Events, Vr360Options} from './types'
+import {
+  addListenerToThreeObject,
+  convertMousePositionToThreePosition,
+  formatBaseInfo,
+  get3dObjectBaseInfo,
+  TextureCacheLoader,
+  update3dObjectBaseInfo
+} from './helper'
+import type {Position, SpaceConfig, ThreeObjectBase, Vr360Events, Vr360Options} from './types'
 import type {SpaceEventName} from './manager/space'
 
 export type Vr360EventName = keyof Vr360Events
@@ -175,6 +182,7 @@ export class Vr360 extends EventEmitter<Vr360Events> {
   public updateContainerSize(): void {
     const width = this.containerWidth
     const height = this.containerHeight
+
     if (this.camera) {
       this.camera.aspect = width / height
       this.camera.updateProjectionMatrix()
@@ -263,24 +271,25 @@ export class Vr360 extends EventEmitter<Vr360Events> {
       this.emit('afterSwitchSpace', {spaceConfig: spaceConfig})
     }
 
-    // 下一个镜头的位置
-    const targetPosition: Position = {
-      x: camera?.position?.x ?? 0,
-      y: camera?.position?.y ?? 0,
-      z: camera?.position?.z ?? 0
-    }
+    // 下一个镜头的信息
+    const nextCameraInfo = formatBaseInfo(camera)
 
     if (clickPosition) {
-      // 用 tween.js 添加镜头切换动画
-      const fromPosition: Position = {
-        x: targetPosition.x - (clickPosition.x - this.camera.position.x),
-        y: targetPosition.y - (clickPosition.y - this.camera.position.y),
-        z: targetPosition.z - (clickPosition.z - this.camera.position.z)
+      // 当前相机的信息
+      const currentCameraInfo: ThreeObjectBase = {
+        ...get3dObjectBaseInfo(this.camera),
+        position: {
+          x: nextCameraInfo.position.x - (clickPosition.x - this.camera.position.x),
+          y: nextCameraInfo.position.y - (clickPosition.y - this.camera.position.y),
+          z: nextCameraInfo.position.z - (clickPosition.z - this.camera.position.z)
+        }
       }
-      new TWEEN.Tween(fromPosition)
-        .to(targetPosition, 500)
-        .onUpdate(position => {
-          this.camera.position.set(position.x, position.y, position.z)
+
+      // 用 tween.js 添加镜头切换动画
+      new TWEEN.Tween(currentCameraInfo)
+        .to(nextCameraInfo, 500)
+        .onUpdate(cameraInfo => {
+          update3dObjectBaseInfo(this.camera, cameraInfo)
         })
         .easing(TWEEN.Easing.Linear.None)
         .start()
@@ -288,7 +297,7 @@ export class Vr360 extends EventEmitter<Vr360Events> {
           handleCompleteTween()
         })
     } else {
-      this.camera.position.set(targetPosition.x, targetPosition.y, targetPosition.z)
+      update3dObjectBaseInfo(this.camera, nextCameraInfo)
       handleCompleteTween()
     }
   }
@@ -366,10 +375,11 @@ export class Vr360 extends EventEmitter<Vr360Events> {
     controls.listenToKeyEvents(window)
     controls.autoRotate = false
     controls.autoRotateSpeed = 0.5
-    controls.enableZoom = true
-    controls.enableDamping = false
+    controls.enableZoom = false
+    controls.enableDamping = true
     controls.enablePan = true
     controls.enableRotate = true
+    controls.rotateSpeed = 0.5
     controls.minDistance = 1
     controls.maxDistance = 100
     // controls.maxPolarAngle = Math.PI / 2

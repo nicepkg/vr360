@@ -22,7 +22,10 @@ html.dark {
 
 body {
   position: relative;
-  overflow: hidden;
+  width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 #app {

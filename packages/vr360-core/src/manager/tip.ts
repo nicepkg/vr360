@@ -1,5 +1,6 @@
 import * as THREE from 'three'
-import type {TextureCacheLoader} from '../helper'
+import type {TextureCacheLoader, ThreeObjectDispatchEvent} from '../helper'
+import {update3dObjectBaseInfo} from '../helper'
 import type {Tip} from '../types'
 import defaultTipUrl from '../assets/tips.png'
 import {EventEmitter} from 'eventemitter3'
@@ -164,9 +165,10 @@ export class TipManager extends EventEmitter<TipManagerEvents> implements Config
     sprite.userData.type = 'tipSprite'
     sprite.userData.tip = tip
 
-    // 鼠标 hover 时展示提示
-    sprite.addEventListener('mouseover', e => {
-      const intersect = e.intersect as THREE.Intersection
+    // 触发展示 tips 事件
+    const emitShowTip = (e: ThreeObjectDispatchEvent<'mouseover'> | ThreeObjectDispatchEvent<'mouseup'>) => {
+      // hover 的对象
+      const intersect = e.intersect
       const tipFromUserData = intersect.object.userData.tip as Tip
 
       const containerHalfWidth = this.container.clientWidth / 2
@@ -184,11 +186,30 @@ export class TipManager extends EventEmitter<TipManagerEvents> implements Config
       const showTipEvent: ShowTipEvent = {tip: tipFromUserData, left, top}
       console.log('展示提示', showTipEvent)
       this.emit('showTip', showTipEvent)
+    }
+
+    // 鼠标 hover 时展示提示
+    sprite.addEventListener('mouseover', _e => {
+      const e = _e as unknown as ThreeObjectDispatchEvent<'mouseover'>
+
+      // 如果鼠标处于按压下状态，不展示提示，此举是为了防止和 controls 滑动冲突导致位置偏差
+      if (e.isMouseDown) return
+
+      emitShowTip(e)
+    })
+
+    // 如果在 tip 上松开鼠标，则判断为需要展示 tips，因为用户可能 controls 滑倒 tips 再松开
+    sprite.addEventListener('mouseup', _e => {
+      const e = _e as unknown as ThreeObjectDispatchEvent<'mouseup'>
+
+      emitShowTip(e)
     })
 
     // 鼠标移出时移除提示
-    sprite.addEventListener('mouseout', e => {
-      const intersect = e.intersect as THREE.Intersection
+    sprite.addEventListener('mouseout', _e => {
+      const e = _e as unknown as ThreeObjectDispatchEvent<'mouseout'>
+
+      const intersect = e.intersect
       const tipFromUserData = intersect.object.userData.tip as Tip
 
       const hideTipEvent: HideTipEvent = {tip: tipFromUserData}
@@ -196,8 +217,10 @@ export class TipManager extends EventEmitter<TipManagerEvents> implements Config
       this.emit('hideTip', hideTipEvent)
     })
 
-    sprite.addEventListener('click', e => {
-      const intersect = e.intersect as THREE.Intersection
+    sprite.addEventListener('click', _e => {
+      const e = _e as unknown as ThreeObjectDispatchEvent<'click'>
+
+      const intersect = e.intersect
       const tipFromUserData = intersect.object.userData.tip as Tip
 
       this.emit('clickTip', {tip: tipFromUserData})
@@ -240,17 +263,11 @@ export class TipManager extends EventEmitter<TipManagerEvents> implements Config
       sprite.material = material
     }
 
-    if (position && !new THREE.Vector3(position.x, position.y, position.z).equals(sprite.position)) {
-      sprite.position.set(position.x, position.y, position.z)
-    }
-
-    if (scale && !new THREE.Vector3(scale.x, scale.y, scale.z).equals(sprite.scale)) {
-      sprite.scale.set(scale.x, scale.y, scale.z)
-    }
-
-    if (rotate && !new THREE.Euler(rotate.x, rotate.y, rotate.z).equals(sprite.rotation)) {
-      sprite.rotation.set(rotate.x, rotate.y, rotate.z)
-    }
+    update3dObjectBaseInfo(sprite, {
+      position,
+      scale,
+      rotate
+    })
 
     sprite.userData.tip = tip
     // this.tipIdSpriteMap.set(id, sprite)

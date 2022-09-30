@@ -169,6 +169,9 @@ export type SpaceConfig = {
   cubeSpaceTextureUrls: CubeSpaceTextureUrls
 } & ConfigModel
 
+/**
+ * vr360 构造参数
+ */
 export type Vr360Options = {
   /**
    * 容器
@@ -189,4 +192,18 @@ export type Vr360Options = {
    * 空间配置
    */
   spacesConfig: SpaceConfig[]
+}
+
+/**
+ * 深度处理 interface key，使所有 key 为必填项
+ */
+export type DeepRequired<T> = {
+  [P in keyof T]-?: T[P] extends (infer U)[] ? DeepRequired<U>[] : T[P] extends object ? DeepRequired<T[P]> : T[P]
+}
+
+/**
+ * 深度处理 interface key，使所有 key 为可选项
+ */
+export type DeepPartial<T> = {
+  [P in keyof T]?: T[P] extends (infer U)[] ? DeepPartial<U>[] : T[P] extends object ? DeepPartial<T[P]> : T[P]
 }

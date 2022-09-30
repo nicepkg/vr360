@@ -58,12 +58,12 @@ const spacesConfig = ref<SpaceConfig[]>([
     },
     tips: [],
     cubeSpaceTextureUrls: {
-      right: '/images/vr/beijing/pano_r.jpg',
-      left: '/images/vr/beijing/pano_l.jpg',
-      top: '/images/vr/beijing/pano_u.jpg',
-      bottom: '/images/vr/beijing/pano_d.jpg',
-      front: '/images/vr/beijing/pano_f.jpg',
-      back: '/images/vr/beijing/pano_b.jpg'
+      right: '/images/vr/beijing/right.jpg',
+      left: '/images/vr/beijing/left.jpg',
+      top: '/images/vr/beijing/top.jpg',
+      bottom: '/images/vr/beijing/bottom.jpg',
+      front: '/images/vr/beijing/front.jpg',
+      back: '/images/vr/beijing/back.jpg'
     }
   }
 ])
@@ -117,7 +117,7 @@ watch(height, async () => {
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: 100%;
+  min-height: 100vh;
   overflow: hidden;
 }
 
@@ -142,6 +142,9 @@ watch(height, async () => {
 .vr-container {
   width: 100%;
   height: 100%;
+
+  /* 修复 edge canvas底部空白，我也不知道为什么，但是有效 */
+  border: 0.5px solid;
 }
 
 .vr-mask {

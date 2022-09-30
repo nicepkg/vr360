@@ -4,10 +4,9 @@
       <div class="relative w-full h-full overflow-hidden flex flex-col">
         <div
           ref="tipRef"
-          class="tip absolute cursor-pointer z-99 p-4 flex flex-col w-240px h-60px justify-center bg-black bg-op-50 text-white"
+          class="tip absolute left-0 top-0 cursor-pointer z-99 p-4 flex flex-col w-240px h-60px justify-center bg-black bg-op-50 text-white"
           :style="{
-            left: tipLeft + 'px',
-            top: tipTop + 50 + 'px',
+            transform: `translate(${tipLeft}px, ${tipTop + 50}px)`,
             zIndex: showTip ? 99 : -1
           }"
         >
