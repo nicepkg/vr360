@@ -184,7 +184,7 @@ export class TipManager extends EventEmitter<TipManagerEvents> implements Config
       const top = (1 - percentPosition.y) * containerHalfHeight - tipContainerHeight / 2 + rendererOffsetTop
 
       const showTipEvent: ShowTipEvent = {tip: tipFromUserData, left, top}
-      console.log('展示提示', showTipEvent)
+      // console.log('展示提示', showTipEvent)
       this.emit('showTip', showTipEvent)
     }
 
@@ -213,7 +213,7 @@ export class TipManager extends EventEmitter<TipManagerEvents> implements Config
       const tipFromUserData = intersect.object.userData.tip as Tip
 
       const hideTipEvent: HideTipEvent = {tip: tipFromUserData}
-      console.log('隐藏提示', hideTipEvent)
+      // console.log('隐藏提示', hideTipEvent)
       this.emit('hideTip', hideTipEvent)
     })
 
@@ -235,7 +235,7 @@ export class TipManager extends EventEmitter<TipManagerEvents> implements Config
           clickPosition: intersect.point
         }
 
-        console.log('调转到空间', switchSpaceEvent)
+        // console.log('调转到空间', switchSpaceEvent)
         this.emit('switchSpace', switchSpaceEvent)
       }
     })

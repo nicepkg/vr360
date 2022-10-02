@@ -154,9 +154,9 @@ export function addListenerToThreeObject(
     // 射线范围内没有东西，终止流程
     if (intersects.length <= 0) return
 
-    if (eventName === 'click') {
-      console.log(`当前点击位置: x=${firstIntersect.point.x}, y=${firstIntersect.point.y}, z=${firstIntersect.point.z}`)
-    }
+    // if (eventName === 'click') {
+    //   console.log(`当前点击位置: x=${firstIntersect.point.x}, y=${firstIntersect.point.y}, z=${firstIntersect.point.z}`)
+    // }
 
     firstIntersect.object.dispatchEvent({
       type: eventName,
