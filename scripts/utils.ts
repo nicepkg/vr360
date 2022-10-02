@@ -23,19 +23,32 @@ export function copyFiles() {
   })
 }
 
-export function getPackagesName(type: 'public' | 'all') {
-  return packagesPaths.reduce<string[]>((pkgNames, packagePath) => {
+export type PackageInfo = {path: string; name: string}
+export function getPackagesInfo(type: 'public' | 'all'): PackageInfo[] {
+  return packagesPaths.reduce<PackageInfo[]>((pkgInfos: PackageInfo[], packagePath) => {
     const pkgJson = pathResolve(packagePath, 'package.json')
 
-    if (!existsSync(pkgJson)) return pkgNames
+    if (!existsSync(pkgJson)) return pkgInfos
 
     const pkg: Record<string, string> = JSON.parse(readFileSync(pkgJson, 'utf8')) || {}
 
     if (type === 'public') {
-      if (pkg.private) return pkgNames
-      return [...pkgNames, pkg.name]
+      if (pkg.private) return pkgInfos
+      return [
+        ...pkgInfos,
+        {
+          path: packagePath,
+          name: pkg.name
+        }
+      ]
     } else {
-      return [...pkgNames, pkg.name]
+      return [
+        ...pkgInfos,
+        {
+          path: packagePath,
+          name: pkg.name
+        }
+      ]
     }
   }, [])
 }
@@ -47,12 +60,15 @@ export function build() {
 }
 
 export function generateChangelog() {
-  const pkgNames = getPackagesName('all')
+  const pkgInfos = getPackagesInfo('all')
 
-  for (const pkgName of pkgNames) {
-    const cmd = `pnpm exec conventional-changelog -p angular -i CHANGELOG.md -s --commit-path . -l ${pkgName} -r 0`
+  for (const pkgInfo of pkgInfos) {
+    const cmd = `pnpm exec conventional-changelog -p angular -i '${path.resolve(
+      pkgInfo.path,
+      './CHANGELOG.md'
+    )}' -s --commit-path . -l ${pkgInfo.name} -r 0`
     console.log('start run command:', cmd)
-    execSync(cmd, {stdio: 'inherit', cwd: pathResolve('../packages', pkgName)})
+    execSync(cmd, {stdio: 'inherit'})
   }
 }
 
