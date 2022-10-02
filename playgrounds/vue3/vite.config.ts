@@ -18,7 +18,7 @@ export default defineConfig(({mode}) => {
 
   return {
     resolve: {
-      dedupe: ['vue', 'vue-demi', '@vue/runtime-core', '@vue/runtime-dom'], // use the same version
+      dedupe: ['vue', 'vue-demi'], // use the same version
       alias: {
         '@/': `${pathResolve('./src')}/`
       }

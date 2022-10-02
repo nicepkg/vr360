@@ -4,6 +4,7 @@ import {googleAnalyticsPlugin} from '@vuepress/plugin-google-analytics'
 import {shikiPlugin} from '@vuepress/plugin-shiki'
 import {path} from '@vuepress/utils'
 import {isProd} from '../utils/common'
+import {codeDemoPlugin} from './code-demo'
 
 const pathResolve = (..._path: string[]) => path.resolve(__dirname, ..._path)
 
@@ -15,7 +16,8 @@ const vuepressPlugins: PluginConfig = [
   // auto register globally components
   registerComponentsPlugin({
     componentsDir: pathResolve('../components')
-  })
+  }),
+  codeDemoPlugin()
 ]
 
 if (isProd) {

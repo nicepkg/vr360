@@ -100,12 +100,12 @@ export type CubeSpaceTextureUrls = {
   /**
    * 上侧贴图 url
    */
-  top: string
+  up: string
 
   /**
    * 下侧贴图 url
    */
-  bottom: string
+  down: string
 
   /**
    * 前侧贴图 url

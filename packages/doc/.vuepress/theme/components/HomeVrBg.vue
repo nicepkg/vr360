@@ -21,7 +21,7 @@
 <script setup lang="ts">
 /* eslint-disable import/no-named-as-default-member */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import {onMounted, ref, watch, nextTick} from 'vue'
+import {onMounted, ref, watch, nextTick, onUnmounted} from 'vue'
 import type {SpaceConfig} from '@nicepkg/vr360-core'
 import {Vr360} from '@nicepkg/vr360-core'
 import {useElementSize} from '@vueuse/core'
@@ -60,8 +60,8 @@ const spacesConfig = ref<SpaceConfig[]>([
     cubeSpaceTextureUrls: {
       right: '/images/vr/beijing/right.jpg',
       left: '/images/vr/beijing/left.jpg',
-      top: '/images/vr/beijing/top.jpg',
-      bottom: '/images/vr/beijing/bottom.jpg',
+      up: '/images/vr/beijing/up.jpg',
+      down: '/images/vr/beijing/down.jpg',
       front: '/images/vr/beijing/front.jpg',
       back: '/images/vr/beijing/back.jpg'
     }
@@ -98,6 +98,10 @@ onMounted(() => {
   })
 
   appRef.value = document.querySelector<HTMLElement>('#app')!
+})
+
+onUnmounted(() => {
+  vr360.destroy()
 })
 
 // eslint-disable-next-line react-hooks/rules-of-hooks

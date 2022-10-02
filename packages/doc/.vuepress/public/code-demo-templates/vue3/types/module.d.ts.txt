@@ -1,0 +1,6 @@
+declare module '*.vue' {
+  import type {DefineComponent} from 'vue-demi'
+  const Component: DefineComponent<{}, {}, any>
+  export default Component
+}
+

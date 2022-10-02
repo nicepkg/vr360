@@ -99,8 +99,8 @@ export const getRealseeTextureUrls = async (realseeVrShareUrl: string): Promise<
     back: `${imageBaseUrl}${back}${imageEndFixUrl}`,
     left: `${imageBaseUrl}${left}${imageEndFixUrl}`,
     right: `${imageBaseUrl}${right}${imageEndFixUrl}`,
-    top: `${imageBaseUrl}${up}${imageEndFixUrl}`,
-    bottom: `${imageBaseUrl}${down}${imageEndFixUrl}`
+    up: `${imageBaseUrl}${up}${imageEndFixUrl}`,
+    down: `${imageBaseUrl}${down}${imageEndFixUrl}`
   }
 
   console.log('vr360: getRealseeTextureUrls', textureUrls)
@@ -132,8 +132,8 @@ export const getRealseeTextureUrls = async (realseeVrShareUrl: string): Promise<
     back: textureUrlsBase64.back,
     left: textureUrlsBase64.left,
     right: textureUrlsBase64.right,
-    top: textureUrlsBase64.top,
-    bottom: textureUrlsBase64.bottom
+    up: textureUrlsBase64.up,
+    down: textureUrlsBase64.down
   }
 }
 

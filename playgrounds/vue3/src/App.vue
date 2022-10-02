@@ -6,7 +6,7 @@
           ref="tipRef"
           class="tip absolute left-0 top-0 cursor-pointer z-99 p-4 flex flex-col w-240px h-60px justify-center bg-black bg-op-50 text-white"
           :style="{
-            transform: `translate(${tipLeft}px, ${tipTop + 50}px)`,
+            transform: `translate(${tipLeft}px, ${tipTop + 60}px)`,
             zIndex: showTip ? 99 : -1
           }"
         >
@@ -78,8 +78,8 @@ const {tipContent, tipTitle, tipLeft, tipTop, showTip, vr360, spacesConfig} = us
       cubeSpaceTextureUrls: {
         right: 'picture/FirstHousing/door/right.jpeg',
         left: 'picture/FirstHousing/door/left.jpeg',
-        top: 'picture/FirstHousing/door/top.jpeg',
-        bottom: 'picture/FirstHousing/door/bottom.jpeg',
+        up: 'picture/FirstHousing/door/up.jpeg',
+        down: 'picture/FirstHousing/door/down.jpeg',
         front: 'picture/FirstHousing/door/front.jpeg',
         back: 'picture/FirstHousing/door/back.jpeg'
       }
@@ -128,8 +128,8 @@ const {tipContent, tipTitle, tipLeft, tipTop, showTip, vr360, spacesConfig} = us
       cubeSpaceTextureUrls: {
         right: 'picture/FirstHousing/living-room/right.jpeg',
         left: 'picture/FirstHousing/living-room/left.jpeg',
-        top: 'picture/FirstHousing/living-room/top.jpeg',
-        bottom: 'picture/FirstHousing/living-room/bottom.jpeg',
+        up: 'picture/FirstHousing/living-room/up.jpeg',
+        down: 'picture/FirstHousing/living-room/down.jpeg',
         front: 'picture/FirstHousing/living-room/front.jpeg',
         back: 'picture/FirstHousing/living-room/back.jpeg'
       }

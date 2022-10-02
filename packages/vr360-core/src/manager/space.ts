@@ -100,7 +100,7 @@ export class SpaceManager
    * @param cubeSpaceTextureUrls 空间贴图
    */
   private createCubeSpaceMaterials(cubeSpaceTextureUrls: CubeSpaceTextureUrls) {
-    const directions = ['right', 'left', 'top', 'bottom', 'front', 'back'] as const
+    const directions = ['right', 'left', 'up', 'down', 'front', 'back'] as const
     const boxMaterials: THREE.MeshBasicMaterial[] = directions.map(direction => {
       const texture = this.textureCacheLoader.loadUrl(
         cubeSpaceTextureUrls[direction as keyof typeof cubeSpaceTextureUrls]
