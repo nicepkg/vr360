@@ -1,6 +1,6 @@
 <div align="center">
-  <a href="https://vr360.vercel.app">
-    <img src="https://vr360.vercel.app/images/logo.svg" width="150">
+  <a href="https://vr360.vercel.app/libs/vr360-core/">
+    <img src="https://vr360.vercel.app/images/logo-dark.svg" width="150">
   </a>
   <h1>@nicepkg/vr360-core</h1>
   <p>json 驱动的全景浏览库核心，设计框架无关性，可用于任何框架，如vue/react/angular/svelte/solidjs...</p>

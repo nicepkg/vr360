@@ -33,7 +33,7 @@ jobs:
           cache: pnpm
 
       - name: Install Dependencies
-        run: pnpm i
+        run: pnpm bootstrap
 
       - name: Lint
         run: pnpm run lint

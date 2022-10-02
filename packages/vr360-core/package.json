@@ -1,9 +1,14 @@
 {
   "name": "@nicepkg/vr360-core",
   "version": "0.1.0",
-  "description": "",
+  "description": "快速实现你的全景开发需求，全景看房、全景街景、全景景点",
   "keywords": [
+    "vr360",
     "vr360-core",
+    "panorama",
+    "pannellum",
+    "photo-sphere-viewer",
+    "photograph",
     "nicepkg",
     "webgl",
     "threejs"
@@ -59,6 +64,7 @@
     "@types/three": "^0.144.0",
     "@types/node": "*",
     "esno": "*",
+    "jsdom": "^20.0.1",
     "three": "^0.145.0",
     "typescript": "*",
     "vite": "*",

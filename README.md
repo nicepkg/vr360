@@ -1,8 +1,9 @@
 <div align="center">
   <a href="https://vr360.vercel.app/">
-    <img src="https://vr360.vercel.app/images/logo.svg" width="150">
+    <img src="https://vr360.vercel.app/images/logo-dark.svg" width="150">
   </a>
-  <h1>Vr360</h1>
+  <br>
+  <br>
   <p>快速实现你的全景开发需求，全景看房、全景街景、全景景点</p>
   <p>
     <img src="https://img.shields.io/github/package-json/v/nicepkg/vr360" alt="version">

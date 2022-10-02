@@ -4,7 +4,7 @@
   "private": true,
   "packageManager": "pnpm@7.0.0",
   "author": "yangjinming",
-  "description": "",
+  "description": "快速实现你的全景开发需求，全景看房、全景街景、全景景点",
   "engines": {
     "node": ">=14",
     "pnpm": ">=7"
