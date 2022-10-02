@@ -105,7 +105,7 @@ export class SpaceManager
       const texture = this.textureCacheLoader.loadUrl(
         cubeSpaceTextureUrls[direction as keyof typeof cubeSpaceTextureUrls]
       )
-      return new THREE.MeshBasicMaterial({map: texture, transparent: true, color: 0xff_ff_ff})
+      return new THREE.MeshBasicMaterial({map: texture})
     })
     return boxMaterials
   }

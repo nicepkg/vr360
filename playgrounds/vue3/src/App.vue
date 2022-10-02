@@ -4,7 +4,7 @@
       <div class="relative w-full h-full overflow-hidden flex flex-col">
         <div
           ref="tipRef"
-          class="tip absolute left-0 top-0 cursor-pointer z-99 p-4 flex flex-col w-240px h-60px justify-center bg-black bg-op-50 text-white"
+          class="tip absolute rounded-4px left-0 top-0 cursor-pointer z-99 p-4 flex flex-col w-240px h-60px justify-center bg-black bg-op-50 text-white"
           :style="{
             transform: `translate(${tipLeft}px, ${tipTop + 60}px)`,
             zIndex: showTip ? 99 : -1
@@ -21,7 +21,7 @@
             class="w-140px h-70px rounded-4px cursor-pointer ml-4"
             @click="handleSwitchSpace(space)"
           >
-            <img class="w-full h-full object-cover rounded-4px object-cover" :src="space.cubeSpaceTextureUrls.left" />
+            <img class="w-full h-full object-cover rounded-4px" :src="space.cubeSpaceTextureUrls.left" />
           </div>
         </div> -->
       </div>

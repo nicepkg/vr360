@@ -148,7 +148,7 @@ export class TipManager extends EventEmitter<TipManagerEvents> implements Config
   public create(tip: Tip): THREE.Sprite {
     const {position, textureUrl = defaultTipUrl, scale, rotate, id} = tip
     const texture = this.textureCacheLoader.loadUrl(textureUrl)
-    const material = new THREE.SpriteMaterial({map: texture, transparent: true, color: 0xff_ff_ff})
+    const material = new THREE.SpriteMaterial({map: texture})
     const sprite = new THREE.Sprite(material)
 
     // 调整位置大小旋转角度

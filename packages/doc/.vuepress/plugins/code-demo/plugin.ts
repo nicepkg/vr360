@@ -22,12 +22,13 @@ export type MarkdownItRenderFn = (
 
 export type CodeDemoOptions = {
   codeDemoMark?: string
+  clickToLoad?: boolean
 }
 
 export type RenderPlaceFunction = (description: string, codeBlockTokens?: Token[]) => string
 
 export const codeDemoPlugin = (options: CodeDemoOptions = {}): Plugin => {
-  const {codeDemoMark = 'demo'} = options
+  const {codeDemoMark = 'demo', clickToLoad = false} = options
 
   // const START_TYPE = `container_${codeDemoMark}_open`
   const END_TYPE = `container_${codeDemoMark}_close`
@@ -59,6 +60,7 @@ export const codeDemoPlugin = (options: CodeDemoOptions = {}): Plugin => {
     const options: CodeDemoProps = {
       mode,
       openFile,
+      clickToLoad,
       project: {
         template: 'node',
         title: title || DEFAULT_EDITOR_TITLE,

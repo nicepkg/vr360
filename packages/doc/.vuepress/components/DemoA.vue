@@ -1,26 +1,27 @@
 <template>
-  <div class="relative w-100vw h-100vh overflow-hidden flex flex-col">
+  <div class="demoA">
     <div
       ref="tipRef"
-      class="tip absolute rounded-4px left-0 top-0 cursor-pointer z-99 p-4 flex flex-col w-240px h-60px justify-center bg-black bg-op-50 text-white"
+      class="demoA-tip"
       :style="{
-        transform: `translate(${tipLeft}px, ${tipTop + 60}px)`,
+        transform: `translate(${tipLeft}px, ${tipTop + 50}px)`,
         zIndex: showTip ? 99 : -1
       }"
     >
-      <div class="tip-title font-bold">{{ tipTitle }}</div>
-      <div class="tip-content">{{ tipContent }}</div>
+      <div class="demoA-tip-title">{{ tipTitle }}</div>
+      <div class="demoA-tip-content">{{ tipContent }}</div>
     </div>
-    <div ref="containerRef" class="w-full h-full"></div>
-    <div class="w-full h-100px flex items-center">
+    <div ref="containerRef" class="demoA-container"></div>
+    <div class="demoA-bottom-bar">
       <div
         v-for="space in spacesConfig"
         :key="space.id"
-        class="w-140px h-70px rounded-4px cursor-pointer ml-4"
+        class="demoA-bottom-card"
+        :style="{
+          backgroundImage: `url(${space.cubeSpaceTextureUrls.left})`
+        }"
         @click="handleSwitchSpace(space)"
-      >
-        <img class="w-full h-full object-cover rounded-4px" :src="space.cubeSpaceTextureUrls.left" />
-      </div>
+      ></div>
     </div>
   </div>
 </template>
@@ -28,10 +29,10 @@
 <script setup lang="ts">
 /* eslint-disable import/no-named-as-default-member */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import {onMounted, onUnmounted, ref} from '@vue/composition-api'
+import {onMounted, ref} from 'vue'
 import type {SpaceConfig} from '@nicepkg/vr360-core'
 import {Vr360} from '@nicepkg/vr360-core'
-import textures from '../../../textures.json'
+import textures from '../../../../textures.json'
 
 const containerRef = ref<HTMLElement>()
 
@@ -65,7 +66,7 @@ const spacesConfig = ref<SpaceConfig[]>([
       },
       {
         id: '2',
-        textureUrl: 'picture/hotpot.png',
+        textureUrl: textures.hotpot,
         targetSpaceId: 'roomB',
         position: {x: -10, y: -4, z: 40},
         content: {
@@ -104,7 +105,7 @@ const spacesConfig = ref<SpaceConfig[]>([
       },
       {
         id: '5',
-        textureUrl: 'picture/hotpot.png',
+        textureUrl: textures.hotpot,
         targetSpaceId: 'roomA',
         position: {
           x: -8,
@@ -153,8 +154,61 @@ onMounted(() => {
     showTip.value = false
   })
 })
-
-onUnmounted(() => {
-  vr360.destroy()
-})
 </script>
+<style>
+.demoA {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 500px;
+  margin-bottom: 4rem;
+  overflow: hidden;
+  background-color: var(--c-bg);
+  border: 1px solid var(--c-border);
+  border-radius: 8px;
+}
+
+.demoA-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 240px;
+  height: 60px;
+  padding: 4px;
+  color: #fff;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+}
+
+.demoA-tip-title {
+  font-weight: bold;
+}
+
+.demoA-container {
+  width: 100%;
+  height: 100%;
+}
+
+.demoA-bottom-bar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+}
+
+.demoA-bottom-card {
+  width: 140px;
+  height: 70px;
+  margin-left: 1rem;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 4px;
+}
+</style>

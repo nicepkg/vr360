@@ -17,7 +17,9 @@ const vuepressPlugins: PluginConfig = [
   registerComponentsPlugin({
     componentsDir: pathResolve('../components')
   }),
-  codeDemoPlugin()
+  codeDemoPlugin({
+    clickToLoad: true
+  })
 ]
 
 if (isProd) {

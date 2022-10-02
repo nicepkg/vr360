@@ -7,10 +7,13 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@nicepkg/vr360-core": "latest",
+    "three": "^0.145.0",
     "vue": "^3.2.40"
   },
   "devDependencies": {
     "@types/node": "18.7.23",
+    "@types/three": "^0.144.0",
     "@unocss/reset": "^0.45.22",
     "@vitejs/plugin-vue": "^3.1.0",
     "@vitejs/plugin-vue-jsx": "^2.0.1",

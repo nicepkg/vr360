@@ -1,6 +1,6 @@
 {
   "name": "@nicepkg/vr360-core",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "快速实现你的全景开发需求，全景看房、全景街景、全景景点",
   "keywords": [
     "vr360",
