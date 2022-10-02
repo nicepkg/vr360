@@ -8,7 +8,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "strict": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "sourceMap": true,
     "resolveJsonModule": true,
     "isolatedModules": true,

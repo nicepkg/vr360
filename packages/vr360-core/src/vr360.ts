@@ -351,9 +351,10 @@ export class Vr360 extends EventEmitter<Vr360Events> {
    */
   private createRenderer(): THREE.WebGLRenderer {
     const renderer = new THREE.WebGLRenderer({
-      antialias: true
+      antialias: true,
+      alpha: true
     })
-    renderer.setClearColor(0xff_ff_ff, 1)
+    renderer.setClearColor(0xff_ff_ff, 0)
     renderer.setPixelRatio(window.devicePixelRatio)
     renderer.setSize(this.containerWidth, this.containerHeight)
 

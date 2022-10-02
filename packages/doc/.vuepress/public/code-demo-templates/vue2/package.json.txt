@@ -1,0 +1,22 @@
+{
+  "name": "playground-vue2",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "vue": "2.6.14"
+  },
+  "devDependencies": {
+    "@types/node": "18.7.23",
+    "@unocss/reset": "^0.45.22",
+    "@vue/runtime-dom": "latest",
+    "typescript": "4.7.4",
+    "unocss": "^0.45.22",
+    "vite": "^2.9.9",
+    "vite-plugin-vue2": "^2.0.2",
+    "vue-template-compiler": "2.6.14"
+  }
+}

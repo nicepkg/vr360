@@ -37,6 +37,7 @@ import {ref} from 'vue'
 import type {SpaceConfig} from '@nicepkg/vr360-core'
 import Editor from './Editor.vue'
 import {useVr360} from './useVr360'
+import textures from '../../../textures.json'
 
 const containerRef = ref<HTMLElement>()
 const tipRef = ref<HTMLElement>()
@@ -75,14 +76,7 @@ const {tipContent, tipTitle, tipLeft, tipTop, showTip, vr360, spacesConfig} = us
           }
         }
       ],
-      cubeSpaceTextureUrls: {
-        right: 'picture/FirstHousing/door/right.jpeg',
-        left: 'picture/FirstHousing/door/left.jpeg',
-        up: 'picture/FirstHousing/door/up.jpeg',
-        down: 'picture/FirstHousing/door/down.jpeg',
-        front: 'picture/FirstHousing/door/front.jpeg',
-        back: 'picture/FirstHousing/door/back.jpeg'
-      }
+      cubeSpaceTextureUrls: textures.firstHouseDoor
     },
     {
       id: 'roomB',
@@ -125,14 +119,7 @@ const {tipContent, tipTitle, tipLeft, tipTop, showTip, vr360, spacesConfig} = us
           }
         }
       ],
-      cubeSpaceTextureUrls: {
-        right: 'picture/FirstHousing/living-room/right.jpeg',
-        left: 'picture/FirstHousing/living-room/left.jpeg',
-        up: 'picture/FirstHousing/living-room/up.jpeg',
-        down: 'picture/FirstHousing/living-room/down.jpeg',
-        front: 'picture/FirstHousing/living-room/front.jpeg',
-        back: 'picture/FirstHousing/living-room/back.jpeg'
-      }
+      cubeSpaceTextureUrls: textures.firstHouseLivingRoom
     }
   ]
 })

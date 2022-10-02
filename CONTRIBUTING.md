@@ -81,8 +81,8 @@ https://www.conventionalcommits.org/ or check out the
 
 3. Make and commit your changes following the
    [commit convention](https://github.com/nicepkg/vr360/blob/master/CONTRIBUTING.md#commit-convention).
-   As you develop, you can run `pnpm build --filter <module>` and
-   `pnpm test --filter <module>` to make sure everything works as expected. Please
+   As you develop, you can run `pnpm --filter <module> build` and
+   `pnpm --filter <module> test` to make sure everything works as expected. Please
    note that you might have to run `pnpm bootstrap` first in order to build all
    dependencies.
 

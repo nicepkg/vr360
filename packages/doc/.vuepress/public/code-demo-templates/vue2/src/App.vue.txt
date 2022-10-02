@@ -1,0 +1,14 @@
+<template>
+  <Example></Example>
+</template>
+
+<script lang="ts">
+import Example from './Example.vue'
+
+export default {
+  name: 'App',
+  components: {
+    Example
+  }
+}
+</script>

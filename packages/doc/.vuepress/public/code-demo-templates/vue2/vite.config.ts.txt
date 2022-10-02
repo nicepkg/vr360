@@ -1,0 +1,27 @@
+import path from 'node:path'
+import {defineConfig} from 'vite'
+import {createVuePlugin} from 'vite-plugin-vue2'
+import Unocss from 'unocss/vite'
+
+const pathResolve = (...args: string[]) => path.resolve(__dirname, ...args)
+
+export default defineConfig({
+  resolve: {
+    alias: {
+      '@/': `${pathResolve('./src')}/`
+    }
+  },
+
+  plugins: [
+    createVuePlugin({
+      jsx: true,
+      jsxOptions: {
+        compositionAPI: true
+      }
+    }),
+
+    // https://github.com/antfu/unocss
+    // 有关配置，请参见 unocss.config.ts
+    Unocss()
+  ]
+})

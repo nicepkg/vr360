@@ -38,7 +38,7 @@ export const codeDemoPlugin = (options: CodeDemoOptions = {}): Plugin => {
   const renderBefore: RenderPlaceFunction = (des, codeBlockTokens) => {
     const files: ProjectFiles = {}
     let openFile: string | undefined
-    const [title, description] = des.split('--').map(s => s.trim())
+    const [mode, title, description] = des.split('--').map(s => s.trim())
 
     if (codeBlockTokens && codeBlockTokens.length > 0) {
       codeBlockTokens.map(token => {
@@ -57,6 +57,7 @@ export const codeDemoPlugin = (options: CodeDemoOptions = {}): Plugin => {
     }
 
     const options: CodeDemoProps = {
+      mode,
       openFile,
       project: {
         template: 'node',

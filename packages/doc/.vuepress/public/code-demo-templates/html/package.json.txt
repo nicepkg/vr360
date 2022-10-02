@@ -1,0 +1,10 @@
+{
+  "name": "playground-html",
+  "private": true,
+  "scripts": {
+    "dev": "http-server ./ -p 8000"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

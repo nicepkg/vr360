@@ -3,7 +3,8 @@
     ref="codeDemoRef"
     class="code-demo"
     :style="{
-      border: isFullScreen ? 'none' : '1px solid var(--c-border)'
+      border: isFullScreen ? 'none' : '1px solid var(--c-border)',
+      borderRadius: isFullScreen ? '0px' : '8px'
     }"
   >
     <div class="code-demo-top">
@@ -74,7 +75,6 @@ onMounted(async () => {
   flex-direction: column;
   overflow: hidden;
   background-color: #2e3138;
-  border-radius: 4px;
 }
 .code-demo-top {
   box-sizing: border-box;

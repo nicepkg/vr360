@@ -29,6 +29,7 @@ export default defineConfig({
   resolve: {
     dedupe: ['vue', 'vue-demi', '@vue/runtime-core', '@vue/runtime-dom'], // use the same version
     alias: {
+      '@/': `${pathResolve('./src')}/`,
       vue: pathResolve('./node_modules/vue/dist/vue.esm.js') // use the same version, also use runtime template compiler
     }
   }

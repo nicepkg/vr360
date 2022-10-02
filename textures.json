@@ -1,0 +1,42 @@
+{
+  "beijing": {
+    "right": "https://m.360buyimg.com/babel/jfs/t1/191407/17/28098/575348/63395813Ea04f5691/f49f0122480b4eb4.jpg",
+    "left": "https://m.360buyimg.com/babel/jfs/t1/74850/32/21805/482922/63395814E01705209/d52a60db8499e89b.jpg",
+    "up": "https://m.360buyimg.com/babel/jfs/t1/104617/17/33299/12291/63395812Ec9ff0c26/f27b377e7685fedc.jpg",
+    "down": "https://m.360buyimg.com/babel/jfs/t1/91477/10/30691/701629/63395813E112bdf50/19c029eab324c169.jpg",
+    "front": "https://m.360buyimg.com/babel/jfs/t1/84076/31/15387/515197/63395812Eb7340684/0a428e64e6e7a9b9.jpg",
+    "back": "https://m.360buyimg.com/babel/jfs/t1/194825/33/29620/583981/63395813E5bee9d7f/bfcf24541d089f01.jpg"
+  },
+  "firstHouseDoor": {
+    "back": "https://m.360buyimg.com/babel/jfs/t1/40814/31/19646/41953/63398297E0707fe35/4e831e60cf579899.jpg",
+    "down": "https://m.360buyimg.com/babel/jfs/t1/43941/23/19369/84038/633982d7E838acd9a/9e7a89cc910d3409.jpg",
+    "front": "https://m.360buyimg.com/babel/jfs/t1/150573/35/27827/113528/633982faE8556c0c0/b455284fd91885c6.jpg",
+    "left": "https://m.360buyimg.com/babel/jfs/t1/189204/25/29491/61430/63398310E3c180e43/26d9b459cf714f9f.jpg",
+    "right": "https://m.360buyimg.com/babel/jfs/t1/184948/34/28448/131232/63398323E61ff80fb/89ab84eda0421260.jpg",
+    "up": "https://m.360buyimg.com/babel/jfs/t1/86258/24/33602/70616/63398334Ea2dcf448/e2f5c275792fb3d6.jpg"
+  },
+  "firstHouseLivingRoom": {
+    "back": "https://m.360buyimg.com/babel/jfs/t1/48117/28/21445/120448/63398366Ede81497b/a46e362df5f7d0ed.jpg",
+    "down": "https://m.360buyimg.com/babel/jfs/t1/101209/24/26762/106253/63398376Eedb0db22/4f335c4ecd72ad74.jpg",
+    "front": "https://m.360buyimg.com/babel/jfs/t1/154056/6/26449/110652/63398388E8ecda044/22e1646534839a95.jpg",
+    "left": "https://m.360buyimg.com/babel/jfs/t1/198990/28/28201/74687/6339839aE28806a5e/43b311d3379397df.jpg",
+    "right": "https://m.360buyimg.com/babel/jfs/t1/209711/14/25233/92186/633983b0E8f4df687/750ba84061ea64a6.jpg",
+    "up": "https://m.360buyimg.com/babel/jfs/t1/186545/35/29054/29678/633983c2E72ef4848/92043b945a03fc29.jpg"
+  },
+  "secondHouseStudyRoom": {
+    "back": "https://m.360buyimg.com/babel/jfs/t1/23811/37/19596/116370/633983fbE34d30250/f1099ee36e330e80.jpg",
+    "down": "https://m.360buyimg.com/babel/jfs/t1/192201/4/28516/139038/63398414E7f79ccf0/c6952458f2e6f3f6.jpg",
+    "front": "https://m.360buyimg.com/babel/jfs/t1/100591/34/32139/109806/63398425E009b97b7/2eb84bda9afffb11.jpg",
+    "left": "https://m.360buyimg.com/babel/jfs/t1/170041/17/30615/76889/63398439Ee255b70a/7eb5499dfa219696.jpg",
+    "right": "https://m.360buyimg.com/babel/jfs/t1/101772/8/31985/106412/6339844cE0e5f0b8a/0ab425fc69cddc10.jpg",
+    "up": "https://m.360buyimg.com/babel/jfs/t1/82864/5/16335/24812/6339845fEed6b2704/d155848fa774e400.jpg"
+  },
+  "secondHouseLivingRoom": {
+    "back": "https://m.360buyimg.com/babel/jfs/t1/205010/17/25032/112321/63398494E447a0165/762fedee9a8ae0da.jpg",
+    "down": "https://m.360buyimg.com/babel/jfs/t1/138584/25/29591/124219/6339849fE359438a0/7058a11663e8c446.jpg",
+    "front": "https://m.360buyimg.com/babel/jfs/t1/76445/23/20067/118945/633984adEaec5f805/8e4b45f2db8a4376.jpg",
+    "left": "https://m.360buyimg.com/babel/jfs/t1/95805/37/31991/93956/633984b6E40f803e6/caf128edf7542856.jpg",
+    "right": "https://m.360buyimg.com/babel/jfs/t1/149003/6/30747/90162/633984c3E17e4ae68/e7da3ca956708bb7.jpg",
+    "up": "https://m.360buyimg.com/babel/jfs/t1/190194/34/27331/16125/633984cfEa0c620d3/1c66d9cb66d5ccbd.jpg"
+  }
+}

@@ -25,6 +25,7 @@ import {onMounted, ref, watch, nextTick, onUnmounted} from 'vue'
 import type {SpaceConfig} from '@nicepkg/vr360-core'
 import {Vr360} from '@nicepkg/vr360-core'
 import {useElementSize} from '@vueuse/core'
+import textures from '../../../../../textures.json'
 
 defineProps({
   showMask: {
@@ -57,14 +58,7 @@ const spacesConfig = ref<SpaceConfig[]>([
       }
     },
     tips: [],
-    cubeSpaceTextureUrls: {
-      right: '/images/vr/beijing/right.jpg',
-      left: '/images/vr/beijing/left.jpg',
-      up: '/images/vr/beijing/up.jpg',
-      down: '/images/vr/beijing/down.jpg',
-      front: '/images/vr/beijing/front.jpg',
-      back: '/images/vr/beijing/back.jpg'
-    }
+    cubeSpaceTextureUrls: textures.beijing
   }
 ])
 
@@ -149,6 +143,10 @@ watch(height, async () => {
 
   /* 修复 edge canvas底部空白，我也不知道为什么，但是有效 */
   border: 0.5px solid;
+}
+
+.vr-container :deep(canvas) {
+  background-color: #fff;
 }
 
 .vr-mask {

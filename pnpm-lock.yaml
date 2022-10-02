@@ -321,11 +321,42 @@ importers:
       vue-demi: 0.13.11_vue@3.2.40
       vue2: /vue/2.6.14
 
+  playgrounds/react:
+    specifiers:
+      '@nicepkg/vr360-core': workspace:*
+      '@types/node': 18.7.23
+      '@types/react': 18.0.21
+      '@types/react-dom': 18.0.6
+      '@unocss/reset': ^0.45.26
+      '@vitejs/plugin-react': 2.1.0
+      clsx: ^1.2.1
+      concurrently: 7.4.0
+      react: 17.0.2
+      react-dom: 17.0.2
+      typescript: 4.7.4
+      unocss: ^0.45.26
+      vite: 3.0.9
+    dependencies:
+      '@nicepkg/vr360-core': link:../../packages/vr360-core
+      clsx: 1.2.1
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    devDependencies:
+      '@types/node': 18.7.23
+      '@types/react': 18.0.21
+      '@types/react-dom': 18.0.6
+      '@unocss/reset': 0.45.26
+      '@vitejs/plugin-react': 2.1.0_vite@3.0.9
+      concurrently: 7.4.0
+      typescript: 4.7.4
+      unocss: 0.45.26_vite@3.0.9
+      vite: 3.0.9
+
   playgrounds/vue2:
     specifiers:
       '@nicepkg/vr360-core': workspace:*
       '@unocss/reset': ^0.45.22
-      '@vue/composition-api': ^1.7.0
+      '@vue/composition-api': ^1.7.1
       '@vue/runtime-dom': latest
       concurrently: 7.4.0
       unocss: ^0.45.22
@@ -792,7 +823,6 @@ packages:
     dependencies:
       '@babel/core': 7.19.3
       '@babel/plugin-transform-react-jsx': 7.19.0_@babel+core@7.19.3
-    dev: false
 
   /@babel/plugin-transform-react-jsx-self/7.18.6_@babel+core@7.19.3:
     resolution: {integrity: sha512-A0LQGx4+4Jv7u/tWzoJF7alZwnBDQd6cGLh9P+Ttk4dpiL+J5p7NSNv/9tlEFFJDq3kjxOavWmbm6t0Gk+A3Ig==}
@@ -802,7 +832,6 @@ packages:
     dependencies:
       '@babel/core': 7.19.3
       '@babel/helper-plugin-utils': 7.19.0
-    dev: false
 
   /@babel/plugin-transform-react-jsx-source/7.18.6_@babel+core@7.19.3:
     resolution: {integrity: sha512-utZmlASneDfdaMh0m/WausbjUjEdGrQJz0vFK93d7wD3xf5wBtX219+q6IlCNZeguIcxS2f/CvLZrlLSvSHQXw==}
@@ -812,7 +841,6 @@ packages:
     dependencies:
       '@babel/core': 7.19.3
       '@babel/helper-plugin-utils': 7.19.0
-    dev: false
 
   /@babel/plugin-transform-react-jsx/7.19.0_@babel+core@7.19.3:
     resolution: {integrity: sha512-UVEvX3tXie3Szm3emi1+G63jyw1w5IcMY0FSKM+CRnKRI5Mr1YbCNgsSTwoTwKphQEG9P+QqmuRFneJPZuHNhg==}
@@ -826,7 +854,6 @@ packages:
       '@babel/helper-plugin-utils': 7.19.0
       '@babel/plugin-syntax-jsx': 7.18.6_@babel+core@7.19.3
       '@babel/types': 7.19.3
-    dev: false
 
   /@babel/plugin-transform-spread/7.19.0_@babel+core@7.19.3:
     resolution: {integrity: sha512-RsuMk7j6n+r752EtzyScnWkQyuJdli6LdO5Klv8Yx0OfPVTcQkIUfS8clx5e9yHXzlnhOZF3CbQ8C2uP5j074w==}
@@ -2444,7 +2471,6 @@ packages:
       vite: 3.0.9
     transitivePeerDependencies:
       - supports-color
-    dev: false
 
   /@vitejs/plugin-vue-jsx/2.0.1_vite@3.0.9+vue@3.2.40:
     resolution: {integrity: sha512-lmiR1k9+lrF7LMczO0pxtQ8mOn6XeppJDHxnpxkJQpT5SiKz4SKhKdeNstXaTNuR8qZhUo5X0pJlcocn72Y4Jg==}
@@ -3759,6 +3785,11 @@ packages:
   /clone/1.0.4:
     resolution: {integrity: sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==}
     engines: {node: '>=0.8'}
+
+  /clsx/1.2.1:
+    resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
+    engines: {node: '>=6'}
+    dev: false
 
   /code-block-writer/11.0.3:
     resolution: {integrity: sha512-NiujjUFB4SwScJq2bwbYUtXbZhBSlY6vYzm++3Q6oC+U+injTqfPYFK8wS9COOmb2lueqp0ZRB4nK1VYeHgNyw==}
@@ -9490,7 +9521,6 @@ packages:
   /react-refresh/0.14.0:
     resolution: {integrity: sha512-wViHqhAd8OHeLS/IRMJjTSDHF3U9eWi62F/MledQGPdJGDhodXJ9PBLNGr6WWL7qlH12Mt3TyTpbS+hGXMjCzQ==}
     engines: {node: '>=0.10.0'}
-    dev: false
 
   /react-router-dom/6.3.0_sfoxds7t5ydpegc3knd667wn6m:
     resolution: {integrity: sha512-uaJj7LKytRxZNQV8+RbzJWnJ8K2nPsOOEuX7aQstlMZKQT0164C+X2w6bnkqU3sjtLvpd5ojrezAyfZ1+0sStw==}
