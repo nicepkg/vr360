@@ -58,4 +58,40 @@ pnpm add @nicepkg/vr360-core threejs
 
 请阅读我们的 [属性文档](./properties.md)、 [函数文档](./methods.md)、[事件文档](./events.md)，了解如何使用 `@nicepkg/vr360-core`。
 
-你也可以浏览我们的 [示例](./example.md)
+除了下面的简易示例，你也可以浏览我们的 [完整项目示例](./example.md)
+
+#### 简易示例效果
+
+<br>
+<DemoA></DemoA>
+
+#### 简易示例代码（cv 专用）
+
+<br>
+<CodeGroup>
+  <CodeGroupItem title="vue2" active>
+
+@[code vue](@/examples/firstHouse/vue2.vue)
+
+  </CodeGroupItem>
+  <CodeGroupItem title="vue3">
+
+@[code vue](@/examples/firstHouse/vue3.vue)
+
+  </CodeGroupItem>
+  <CodeGroupItem title="react">
+
+@[code tsx](@/examples/firstHouse/react.tsx)
+
+  </CodeGroupItem>
+  <CodeGroupItem title="原生">
+
+@[code html](@/examples/firstHouse/html.html)
+
+  </CodeGroupItem>
+  <CodeGroupItem title="demo.css">
+
+@[code css](@/examples/firstHouse/demo.css)
+
+  </CodeGroupItem>
+</CodeGroup>

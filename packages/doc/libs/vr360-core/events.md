@@ -1,8 +1,8 @@
 # 事件
 
-## showTip
+## 显示提示
 
-### 介绍
+#### 介绍
 
 ```ts
 interface Vr360Events {
@@ -30,7 +30,7 @@ interface Vr360Events {
 
 点击查看 [tip](./methods.md#tip-空间配置里的提示配置) 类型
 
-### 示例
+#### 示例
 
 ```ts
 import {Vr360} from '@nicepkg/vr360-core'
@@ -44,9 +44,9 @@ vr360.on('showTip', (e) => {
 })
 ```
 
-## hideTip
+## 隐藏提示
 
-### 介绍
+#### 介绍
 
 ```ts
 interface Vr360Events {
@@ -64,7 +64,7 @@ interface Vr360Events {
 
 点击查看 [tip](./methods.md#tip-空间配置里的提示配置) 类型
 
-### 示例
+#### 示例
 
 ```ts
 import {Vr360} from '@nicepkg/vr360-core'
@@ -78,9 +78,9 @@ vr360.on('hideTip', (e) => {
 })
 ```
 
-## clickTip
+## 点击提示图标
 
-### 介绍
+#### 介绍
 
 ```ts
 interface Vr360Events {
@@ -98,7 +98,7 @@ interface Vr360Events {
 
 点击查看 [tip](./methods.md#tip-空间配置里的提示配置) 类型
 
-### 示例
+#### 示例
 
 ```ts
 import {Vr360} from '@nicepkg/vr360-core'
@@ -112,9 +112,9 @@ vr360.on('clickTip', (e) => {
 })
 ```
 
-## update
+## 每一帧更新
 
-### 介绍
+#### 介绍
 
 ```ts
 interface Vr360Events {
@@ -125,7 +125,7 @@ interface Vr360Events {
 }
 ```
 
-### 示例
+#### 示例
 
 ```ts
 import {Vr360} from '@nicepkg/vr360-core'
@@ -139,9 +139,9 @@ vr360.on('update', () => {
 })
 ```
 
-## afterSwitchSpace
+## 切换全景空间完成
 
-### 介绍
+#### 介绍
 
 ```ts
 interface Vr360Events {
@@ -159,7 +159,7 @@ interface Vr360Events {
 
 点击查看 [SpaceConfig](./methods.md#spaceconfig-构造参数里的空间配置) 类型
 
-### 示例
+#### 示例
 
 ```ts
 import {Vr360} from '@nicepkg/vr360-core'

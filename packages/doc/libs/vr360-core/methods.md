@@ -1,8 +1,8 @@
 # 方法
 
-## constructor
+## 构造器
 
-### 介绍
+#### 介绍
 
 ```ts
 class Vr360 {
@@ -18,7 +18,7 @@ class Vr360 {
 
 点击查看 [Vr360Options](#vr360options-构造参数) 类型
 
-### 示例
+#### 示例
 
 ```ts
 import {Vr360, Vr360Options} from '@nicepkg/vr360-core'
@@ -31,9 +31,9 @@ const vr360Options: Vr360Options = {
 const vr360 = new Vr360(vr360Options)
 ```
 
-### 相关类型
+#### 相关类型
 
-#### Vr360Options 构造参数
+##### Vr360Options 构造参数
 
 ```ts
 /**
@@ -62,7 +62,7 @@ interface Vr360Options {
 }
 ```
 
-#### SpaceConfig 构造参数里的空间配置
+##### SpaceConfig 构造参数里的空间配置
 
 ```ts
 /**
@@ -148,7 +148,7 @@ interface SpaceConfig {
 }
 ```
 
-#### Tip 空间配置里的提示配置
+##### Tip 空间配置里的提示配置
 
 ```ts
 interface Tip {
@@ -201,9 +201,9 @@ interface Tip {
 }
 ```
 
-## listenResize
+## 监听页面尺寸变化
 
-### 介绍
+#### 介绍
 
 ```ts
 class Vr360 {
@@ -217,7 +217,7 @@ class Vr360 {
 }
 ```
 
-### 示例
+#### 示例
 
 ```ts
 import {Vr360} from '@nicepkg/vr360-core'
@@ -233,14 +233,14 @@ const removeResizeListener = vr360.listenResize()
 removeResizeListener()
 ```
 
-## updateContainerSize
+## 刷新容器渲染宽高
 
-### 介绍
+#### 介绍
 
 ```ts
 class Vr360 {
   /**
-   * 更新容器宽高
+   * 刷新容器渲染宽高
    */
   public updateContainerSize(): void {
     ...
@@ -248,7 +248,7 @@ class Vr360 {
 }
 ```
 
-### 示例
+#### 示例
 
 ```ts
 import {Vr360} from '@nicepkg/vr360-core'
@@ -261,9 +261,9 @@ vr360.render()
 vr360.updateContainerSize()
 ```
 
-## updateSpacesConfig
+## 更新全景空间配置
 
-### 介绍
+#### 介绍
 
 ```ts
 class Vr360 {
@@ -279,7 +279,7 @@ class Vr360 {
 
 点击查看 [SpaceConfig](#spaceconfig-构造参数里的空间配置) 类型
 
-### 示例
+#### 示例
 
 ```ts
 import {Vr360, SpaceConfig} from '@nicepkg/vr360-core'
@@ -303,9 +303,9 @@ spacesConfig.push([
 vr360.updateSpacesConfig(spacesConfig)
 ```
 
-## switchSpace
+## 切换全景空间
 
-### 介绍
+#### 介绍
 
 ```ts
 class Vr360 {
@@ -319,7 +319,7 @@ class Vr360 {
 }
 ```
 
-### 示例
+#### 示例
 
 ```ts
 import {Vr360, SpaceConfig} from '@nicepkg/vr360-core'
@@ -347,9 +347,9 @@ vr360.render()
 vr360.switchSpace('roomB')
 ```
 
-## render
+## 开始渲染全景
 
-### 介绍
+#### 介绍
 
 ```ts
 class Vr360 {
@@ -362,7 +362,7 @@ class Vr360 {
 }
 ```
 
-### 示例
+#### 示例
 
 ```ts
 import {Vr360} from '@nicepkg/vr360-core'
@@ -372,9 +372,9 @@ const vr360 = new Vr360({....})
 vr360.render()
 ```
 
-## getPositionFromMouseXY
+## 把鼠标位置转换成 threejs 位置
 
-### 介绍
+#### 介绍
 
 ```ts
 class Vr360 {
@@ -394,7 +394,7 @@ class Vr360 {
 }
 ```
 
-### 示例
+#### 示例
 
 ```ts
 import {Vr360} from '@nicepkg/vr360-core'
@@ -414,9 +414,9 @@ document.querySelector('#container').addEventListener('click', (e) => {
 })
 ```
 
-## destroy
+## 注销全景实例
 
-### 介绍
+#### 介绍
 
 ```ts
 class Vr360 {
@@ -429,7 +429,7 @@ class Vr360 {
 }
 ```
 
-### 示例
+#### 示例
 
 ```ts
 import {Vr360} from '@nicepkg/vr360-core'

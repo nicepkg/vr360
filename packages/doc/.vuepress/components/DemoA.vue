@@ -162,7 +162,7 @@ onMounted(() => {
   flex-direction: column;
   width: 100%;
   height: 500px;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
   overflow: hidden;
   background-color: var(--c-bg);
   border: 1px solid var(--c-border);
@@ -173,7 +173,7 @@ onMounted(() => {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 99;
+  z-index: -1;
   display: flex;
   flex-direction: column;
   justify-content: center;

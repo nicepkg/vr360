@@ -1,8 +1,8 @@
 # 属性
 
-## container
+## 全景容器
 
-### 介绍
+##### 介绍
 
 ```ts
 class Vr360 {
@@ -13,7 +13,7 @@ class Vr360 {
 }
 ```
 
-### 示例
+##### 示例
 
 ```ts
 import {Vr360} from '@nicepkg/vr360-core'
@@ -26,9 +26,9 @@ vr360.render()
 console.log('3d 渲染容器是：', vr360.container)
 ```
 
-## camera
+## 相机
 
-### 介绍
+##### 介绍
 
 ```ts
 class Vr360 {
@@ -39,7 +39,7 @@ class Vr360 {
 }
 ```
 
-### 示例
+##### 示例
 
 ```ts
 import {Vr360} from '@nicepkg/vr360-core'
@@ -52,9 +52,9 @@ vr360.render()
 console.log('3d 相机是：', vr360.camera)
 ```
 
-## renderer
+## 渲染器
 
-### 介绍
+#### 介绍
 
 ```ts
 class Vr360 {
@@ -65,7 +65,7 @@ class Vr360 {
 }
 ```
 
-### 示例
+#### 示例
 
 ```ts
 import {Vr360} from '@nicepkg/vr360-core'
@@ -78,9 +78,9 @@ vr360.render()
 console.log('3d 渲染器是：', vr360.renderer)
 ```
 
-## scene
+## 场景
 
-### 介绍
+#### 介绍
 
 ```ts
 class Vr360 {
@@ -91,7 +91,7 @@ class Vr360 {
 }
 ```
 
-### 示例
+#### 示例
 
 ```ts
 import {Vr360} from '@nicepkg/vr360-core'
@@ -104,9 +104,9 @@ vr360.render()
 console.log('3d 场景是：', vr360.scene)
 ```
 
-## controls
+## 控制器
 
-### 介绍
+#### 介绍
 
 ```ts
 class Vr360 {
@@ -117,7 +117,7 @@ class Vr360 {
 }
 ```
 
-### 示例
+#### 示例
 
 ```ts
 import {Vr360} from '@nicepkg/vr360-core'
@@ -130,9 +130,9 @@ vr360.render()
 console.log('3d 控制器是：', vr360.controls)
 ```
 
-## spacesConfig
+## 全景空间配置
 
-### 介绍
+#### 介绍
 
 ```ts
 class Vr360 {
@@ -145,7 +145,7 @@ class Vr360 {
 
 点击查看 [SpaceConfig](./methods.md#spaceconfig-构造参数里的空间配置) 类型
 
-### 示例
+#### 示例
 
 ```ts
 import {Vr360} from '@nicepkg/vr360-core'
@@ -158,9 +158,9 @@ vr360.render()
 console.log('3d 空间配置是：', vr360.spacesConfig)
 ```
 
-## tipContainer
+## 提示容器
 
-### 介绍
+#### 介绍
 
 ```ts
 class Vr360 {
@@ -171,7 +171,7 @@ class Vr360 {
 }
 ```
 
-### 示例
+#### 示例
 
 ```ts
 import {Vr360} from '@nicepkg/vr360-core'

@@ -14,3 +14,4 @@ tsconfig.tsbuildinfo
 types/components.d.ts
 types/auto-imports.d.ts
 *.generated.ts
+**/.vuepress/examples/

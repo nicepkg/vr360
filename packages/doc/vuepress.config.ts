@@ -65,5 +65,10 @@ export default defineUserConfig({
   bundler: viteBundler(bundlerConfig),
   templateDev: pathResolve('.vuepress/index.build.html'),
   templateBuild: pathResolve('.vuepress/index.build.html'),
+  markdown: {
+    importCode: {
+      handleImportPath: str => str.replace(/^@/, pathResolve('.vuepress'))
+    }
+  },
   plugins
 })

@@ -48,24 +48,28 @@ onMounted(async () => {
 
   codeDemoEditorRef.value.setAttribute('frameborder', '0')
 
-  // eslint-disable-next-line no-restricted-globals
-  const defaultFiles: ProjectFiles = (await self.loadCodeDemoModeDefaultFiles?.(props.mode)) ?? {}
-  const finalProject = {
-    ...props.project,
-    files: {
-      ...defaultFiles,
-      ...props.project.files
-    }
-  } as Project
+  try {
+    // eslint-disable-next-line no-restricted-globals
+    const defaultFiles: ProjectFiles = (await self.loadCodeDemoModeDefaultFiles?.(props.mode)) ?? {}
+    const finalProject = {
+      ...props.project,
+      files: {
+        ...defaultFiles,
+        ...props.project.files
+      }
+    } as Project
 
-  await sdk.embedProject(codeDemoEditorRef.value, finalProject, {
-    forceEmbedLayout: true,
-    openFile: props.openFile,
-    hideNavigation: true,
-    height: '100%',
-    view: props.previewOnly ? 'preview' : undefined,
-    clickToLoad: props.clickToLoad
-  })
+    await sdk.embedProject(codeDemoEditorRef.value, finalProject, {
+      forceEmbedLayout: true,
+      openFile: props.openFile,
+      hideNavigation: true,
+      height: '100%',
+      view: props.previewOnly ? 'preview' : undefined,
+      clickToLoad: props.clickToLoad
+    })
+  } catch (error) {
+    console.error('CodeDemoError:', error)
+  }
 })
 </script>
 <style>

@@ -12,7 +12,11 @@ export default defineClientConfig({
         const mode = _mode as 'node' | 'vue2' | 'vue3' | 'react' | 'html'
 
         const defaultFiles: ProjectFiles = {
-          'src/vr360-config.ts': (await import('./public/code-demo-templates/vr360-config.ts.txt?raw')).default
+          // 'src/vr360-config.ts': (await import('./public/code-demo-templates/vr360-config.ts.txt?raw')).default,
+          'src/demo.css': (await import('./public/code-demo-templates/demo.css.txt?raw')).default,
+          '.stackblitzrc': `{
+            "startCommand": "npm run dev"
+          }`
         }
 
         switch (mode) {
@@ -28,10 +32,7 @@ export default defineClientConfig({
               'vite.config.ts': (await import('./public/code-demo-templates/vue3/vite.config.ts.txt?raw')).default,
               'package.json': (await import('./public/code-demo-templates/vue3/package.json.txt?raw')).default,
               'tsconfig.json': (await import('./public/code-demo-templates/vue3/tsconfig.json.txt?raw')).default,
-              'unocss.config.ts': (await import('./public/code-demo-templates/vue3/unocss.config.ts.txt?raw')).default,
-              '.stackblitzrc': `{
-                "startCommand": "npm run dev"
-              }`
+              'unocss.config.ts': (await import('./public/code-demo-templates/vue3/unocss.config.ts.txt?raw')).default
             } as ProjectFiles
           case 'vue2':
             return {
@@ -44,10 +45,7 @@ export default defineClientConfig({
               'vite.config.ts': (await import('./public/code-demo-templates/vue2/vite.config.ts.txt?raw')).default,
               'package.json': (await import('./public/code-demo-templates/vue2/package.json.txt?raw')).default,
               'tsconfig.json': (await import('./public/code-demo-templates/vue2/tsconfig.json.txt?raw')).default,
-              'unocss.config.ts': (await import('./public/code-demo-templates/vue2/unocss.config.ts.txt?raw')).default,
-              '.stackblitzrc': `{
-              "startCommand": "npm run dev"
-            }`
+              'unocss.config.ts': (await import('./public/code-demo-templates/vue2/unocss.config.ts.txt?raw')).default
             } as ProjectFiles
           case 'react':
             return {
@@ -57,14 +55,15 @@ export default defineClientConfig({
               'package.json': (await import('./public/code-demo-templates/react/package.json.txt?raw')).default,
               'tsconfig.json': (await import('./public/code-demo-templates/react/tsconfig.json.txt?raw')).default,
               'unocss.config.ts': (await import('./public/code-demo-templates/react/unocss.config.ts.txt?raw')).default,
-              'vite.config.ts': (await import('./public/code-demo-templates/react/vite.config.ts.txt?raw')).default,
-              '.stackblitzrc': `{
-                "startCommand": "npm run dev"
-              }`
+              'vite.config.ts': (await import('./public/code-demo-templates/react/vite.config.ts.txt?raw')).default
             } as ProjectFiles
           case 'html':
             return {
-              'package.json': (await import('./public/code-demo-templates/html/package.json.txt?raw')).default
+              'package.json': (await import('./public/code-demo-templates/html/package.json.txt?raw')).default,
+              'demo.css': (await import('./public/code-demo-templates/demo.css.txt?raw')).default,
+              '.stackblitzrc': `{
+                "startCommand": "npm run dev"
+              }`
             } as ProjectFiles
           default:
             return {}

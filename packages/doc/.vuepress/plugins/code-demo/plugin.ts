@@ -1,6 +1,6 @@
-import {DEFAULT_EDITOR_DESCRIPTION, DEFAULT_EDITOR_TITLE} from './constant'
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import path from 'node:path'
+import fs from 'node:fs'
 import type {Plugin} from '@vuepress/core'
 import markdownItContainer from 'markdown-it-container'
 import type {MarkdownEnv} from '@vuepress/markdown'
@@ -9,6 +9,7 @@ import type * as Renderer from 'markdown-it/lib/renderer'
 import type {CodeDemoProps} from './CodeDemo.props'
 import type {ProjectFiles} from '@stackblitz/sdk'
 import * as base64 from 'js-base64'
+import {DEFAULT_EDITOR_DESCRIPTION, DEFAULT_EDITOR_TITLE} from './constant'
 
 const pathResolve = (..._path: string[]) => path.resolve(__dirname, ..._path)
 
@@ -23,12 +24,13 @@ export type MarkdownItRenderFn = (
 export type CodeDemoOptions = {
   codeDemoMark?: string
   clickToLoad?: boolean
+  resolvePath?: (filePath: string) => string
 }
 
 export type RenderPlaceFunction = (description: string, codeBlockTokens?: Token[]) => string
 
 export const codeDemoPlugin = (options: CodeDemoOptions = {}): Plugin => {
-  const {codeDemoMark = 'demo', clickToLoad = false} = options
+  const {codeDemoMark = 'demo', clickToLoad = false, resolvePath = p => p} = options
 
   // const START_TYPE = `container_${codeDemoMark}_open`
   const END_TYPE = `container_${codeDemoMark}_close`
@@ -45,8 +47,16 @@ export const codeDemoPlugin = (options: CodeDemoOptions = {}): Plugin => {
       codeBlockTokens.map(token => {
         const [lang, filename] = token.info.split(/\s+/)
 
+        // 找出代码内容需要插入的部分 /*# 路径 #*/
+        const importPathReg = /\/\*#\s*(.+)\s*#\*\//g
+
         // 代码内容
-        const codeContent = token.content
+        const codeContent = token.content.replace(importPathReg, (match, p: string) => {
+          const currentImportPath = pathResolve(resolvePath(p.trim()))
+          if (!fs.existsSync(currentImportPath)) return match
+          const importCode = fs.readFileSync(currentImportPath, 'utf8')
+          return importCode || match
+        })
 
         // 最终文件名
         const _filename = filename.endsWith(`.${lang}`) ? filename : `${filename}.${lang}`

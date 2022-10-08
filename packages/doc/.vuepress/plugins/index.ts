@@ -18,7 +18,8 @@ const vuepressPlugins: PluginConfig = [
     componentsDir: pathResolve('../components')
   }),
   codeDemoPlugin({
-    clickToLoad: true
+    clickToLoad: true,
+    resolvePath: str => str.replace(/^@/, pathResolve('../'))
   })
 ]
 
