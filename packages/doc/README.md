@@ -39,5 +39,5 @@ features:
 
   - title:
     details:
-footer: MIT Licensed | Copyright © 2022-present YangJinMing
+footer: MIT License | Copyright © 2022-present YangJinMing
 ---
