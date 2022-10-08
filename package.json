@@ -13,6 +13,7 @@
     "bootstrap": "pnpm i &&pnpm build:all",
     "build": "esno ./scripts/build.ts",
     "build:all": "turbo run build",
+    "build:ci": "pnpm i --store=node_modules/.pnpm-store --frozen-lockfile && turbo run build --no-cache",
     "check-update": "esno ./scripts/check-update.ts",
     "clean": "rimraf **/node_modules/**",
     "commit": "git add . &&git-cz",
