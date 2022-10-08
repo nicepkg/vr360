@@ -12,7 +12,7 @@
     <script src="https://unpkg.com/three@0.145.0/build/three.min.js"></script>
 
     <!-- 引入 vr360-core -->
-    <script src="https://unpkg.com/@nicepkg/vr360-core@^0.3.0/dist/index.min.umd.js"></script>
+    <script src="https://unpkg.com/@nicepkg/vr360-core@^0.3.1/dist/index.min.umd.js"></script>
 
     <!-- 引入自己的 css -->
     <link href="./demo.css" rel="stylesheet" />
@@ -152,7 +152,8 @@
         const {top, left} = e
         Object.assign(tip.style, {
           transform: `translate(${left}px, ${top + 50}px)`,
-          zIndex: 99
+          zIndex: 99,
+          visibility: 'visible'
         })
         tip.style.t
         tipTitle.innerText = e.tip.content.title
@@ -166,6 +167,7 @@
 
         // 隐藏提示容器
         tip.style.zIndex = -1
+        tip.style.visibility = 'hidden'
       })
 
       // 页面卸载时注销全景实例

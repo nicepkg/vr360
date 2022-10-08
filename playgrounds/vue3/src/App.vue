@@ -7,7 +7,8 @@
           class="tip absolute rounded-4px left-0 top-0 cursor-pointer z-99 p-4 flex flex-col w-240px h-60px justify-center bg-black bg-op-50 text-white"
           :style="{
             transform: `translate(${tipLeft}px, ${tipTop + 60}px)`,
-            zIndex: showTip ? 99 : -1
+            zIndex: showTip ? 99 : -1,
+            visibility: showTip ? 'visible' : 'hidden'
           }"
         >
           <div class="tip-title font-bold">{{ tipTitle }}</div>

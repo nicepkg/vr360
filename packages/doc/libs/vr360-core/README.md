@@ -40,6 +40,55 @@ pnpm add @nicepkg/vr360-core threejs
 :::
 ::::
 
+## 浏览器(CDN)
+
+:::: code-group
+::: code-group-item Unpkg
+
+```html:no-v-pre
+<!-- 引入 threejs -->
+<script src="https://unpkg.com/three@0.145.0/build/three.min.js"></script>
+
+<!-- 引入 vr360-core -->
+<script src="https://unpkg.com/@nicepkg/vr360-core@{{version}}"></script>
+
+<script>
+// 使用
+const {Vr360} = Vr360Core // 原生使用时，所有的导出都在 window.Vr360Core 里
+
+// 初始化全景实例
+const vr360 = new Vr360({...})
+
+// 开始渲染全景
+vr360.render()
+</script>
+```
+
+:::
+::: code-group-item JsDelivr
+
+```html:no-v-pre
+<!-- 引入 threejs -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.145.0/build/three.min.js"></script>
+
+<!-- 引入 vr360-core -->
+<script src="https://cdn.jsdelivr.net/npm/@nicepkg/vr360-core@{{version}}"></script>
+
+<script>
+// 使用
+const {Vr360} = Vr360Core // 原生使用时，所有的导出都在 window.Vr360Core 里
+
+// 初始化全景实例
+const vr360 = new Vr360({...})
+
+// 开始渲染全景
+vr360.render()
+</script>
+```
+
+:::
+::::
+
 ## 为什么
 
 如果产品叫你实现一个类似全景看房的功能，而且时间紧，你会怎么做？

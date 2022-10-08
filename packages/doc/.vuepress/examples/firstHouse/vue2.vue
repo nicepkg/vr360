@@ -6,7 +6,8 @@
       class="demo-tip"
       :style="{
         transform: `translate(${tip.left}px, ${tip.top + 50}px)`,
-        zIndex: tip.show ? 99 : -1
+        zIndex: tip.show ? 99 : -1,
+        visibility: tip.show ? 'visible' : 'hidden'
       }"
     >
       <!-- 提示标题 -->

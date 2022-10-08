@@ -15,7 +15,7 @@ const createViteConfig = (options: CreateViteConfigOptions = {}): UserConfig => 
     packagePath,
     minify,
     externalMap: {
-      three: ''
+      three: 'THREE'
     },
     dedupe: ['three'] // use the same version
   })

@@ -5,7 +5,8 @@
       class="demoA-tip"
       :style="{
         transform: `translate(${tipLeft}px, ${tipTop + 50}px)`,
-        zIndex: showTip ? 99 : -1
+        zIndex: showTip ? 99 : -1,
+        visibility: showTip ? 'visible' : 'hidden'
       }"
     >
       <div class="demoA-tip-title">{{ tipTitle }}</div>
@@ -144,9 +145,12 @@ onMounted(() => {
 <style>
 .demoA {
   position: relative;
+  z-index: 0;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   width: 100%;
+  max-width: calc(100vw - 3rem);
   height: 500px;
   margin-bottom: 2rem;
   overflow: hidden;

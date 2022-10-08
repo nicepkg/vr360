@@ -27,6 +27,7 @@
   padding: 4px;
   color: #fff;
   cursor: pointer;
+  visibility: hidden;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 4px;
 }

@@ -162,7 +162,8 @@ function Example() {
         className="demo-tip"
         style={{
           transform: `translate(${tipLeft}px, ${tipTop + 50}px)`,
-          zIndex: showTip ? 99 : -1
+          zIndex: showTip ? 99 : -1,
+          visibility: showTip ? 'visible' : 'hidden'
         }}
       >
         {/* 提示标题 */}
