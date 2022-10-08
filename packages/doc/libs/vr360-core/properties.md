@@ -13,7 +13,7 @@ class Vr360 {
 }
 ```
 
-##### 示例
+##### 使用
 
 ```ts
 import {Vr360} from '@nicepkg/vr360-core'
@@ -39,7 +39,7 @@ class Vr360 {
 }
 ```
 
-##### 示例
+##### 使用
 
 ```ts
 import {Vr360} from '@nicepkg/vr360-core'
@@ -65,7 +65,7 @@ class Vr360 {
 }
 ```
 
-#### 示例
+#### 使用
 
 ```ts
 import {Vr360} from '@nicepkg/vr360-core'
@@ -91,7 +91,7 @@ class Vr360 {
 }
 ```
 
-#### 示例
+#### 使用
 
 ```ts
 import {Vr360} from '@nicepkg/vr360-core'
@@ -117,7 +117,7 @@ class Vr360 {
 }
 ```
 
-#### 示例
+#### 使用
 
 ```ts
 import {Vr360} from '@nicepkg/vr360-core'
@@ -145,7 +145,7 @@ class Vr360 {
 
 点击查看 [SpaceConfig](./methods.md#spaceconfig-构造参数里的空间配置) 类型
 
-#### 示例
+#### 使用
 
 ```ts
 import {Vr360} from '@nicepkg/vr360-core'
@@ -171,7 +171,7 @@ class Vr360 {
 }
 ```
 
-#### 示例
+#### 使用
 
 ```ts
 import {Vr360} from '@nicepkg/vr360-core'

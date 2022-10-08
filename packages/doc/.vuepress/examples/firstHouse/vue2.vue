@@ -42,16 +42,7 @@ export default {
     // 全景空间配置
     const spacesConfig: SpaceConfig[] = [
       {
-        id: 'roomA', // 空间 id，用于切换空间，必须唯一
-        camera: {
-          // 相机配置，可选
-          position: {
-            // 相机位置，可选
-            x: 0,
-            y: 0,
-            z: 0
-          }
-        },
+        id: 'spaceA', // 空间 id，用于切换空间，必须唯一
         tips: [
           // 提示，可选
           {
@@ -68,7 +59,7 @@ export default {
             // 自定义提示图标贴图，可选
             textureUrl:
               'https://m.360buyimg.com/babel/jfs/t1/125314/12/31594/6260/6339b149E14068522/5c0d35a3e149936a.png',
-            targetSpaceId: 'roomB', // 提示点击后跳转的空间 id，可选
+            targetSpaceId: 'spaceB', // 提示点击后跳转的空间 id，可选
             position: {x: -10, y: -4, z: 40},
             content: {
               title: '去客厅',
@@ -87,14 +78,7 @@ export default {
         }
       },
       {
-        id: 'roomB',
-        camera: {
-          position: {
-            x: 0,
-            y: 0,
-            z: 0
-          }
-        },
+        id: 'spaceB',
         tips: [
           {
             id: '3',
@@ -116,7 +100,7 @@ export default {
             id: '5',
             textureUrl:
               'https://m.360buyimg.com/babel/jfs/t1/125314/12/31594/6260/6339b149E14068522/5c0d35a3e149936a.png',
-            targetSpaceId: 'roomA',
+            targetSpaceId: 'spaceA',
             position: {
               x: -8,
               y: 0,

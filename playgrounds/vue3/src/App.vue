@@ -48,14 +48,7 @@ const {tipContent, tipTitle, tipLeft, tipTop, showTip, vr360, spacesConfig} = us
   tipEl: tipRef,
   spacesConfig: [
     {
-      id: 'roomA',
-      camera: {
-        position: {
-          x: 0,
-          y: 0,
-          z: 0
-        }
-      },
+      id: 'spaceA',
       tips: [
         {
           id: '1',
@@ -68,7 +61,7 @@ const {tipContent, tipTitle, tipLeft, tipTop, showTip, vr360, spacesConfig} = us
         {
           id: '2',
           textureUrl: 'picture/hotpot.png',
-          targetSpaceId: 'roomB',
+          targetSpaceId: 'spaceB',
           position: {x: -10, y: -4, z: 40},
           content: {
             title: '去客厅',
@@ -79,14 +72,7 @@ const {tipContent, tipTitle, tipLeft, tipTop, showTip, vr360, spacesConfig} = us
       cubeSpaceTextureUrls: textures.firstHouseDoor
     },
     {
-      id: 'roomB',
-      camera: {
-        position: {
-          x: 0,
-          y: 0,
-          z: 0
-        }
-      },
+      id: 'spaceB',
       tips: [
         {
           id: '3',
@@ -107,7 +93,7 @@ const {tipContent, tipTitle, tipLeft, tipTop, showTip, vr360, spacesConfig} = us
         {
           id: '5',
           textureUrl: 'picture/hotpot.png',
-          targetSpaceId: 'roomA',
+          targetSpaceId: 'spaceA',
           position: {
             x: -8,
             y: 0,

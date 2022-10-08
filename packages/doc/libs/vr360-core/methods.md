@@ -18,7 +18,7 @@ class Vr360 {
 
 点击查看 [Vr360Options](#vr360options-构造参数) 类型
 
-#### 示例
+#### 使用
 
 ```ts
 import {Vr360, Vr360Options} from '@nicepkg/vr360-core'
@@ -217,7 +217,7 @@ class Vr360 {
 }
 ```
 
-#### 示例
+#### 使用
 
 ```ts
 import {Vr360} from '@nicepkg/vr360-core'
@@ -248,7 +248,7 @@ class Vr360 {
 }
 ```
 
-#### 示例
+#### 使用
 
 ```ts
 import {Vr360} from '@nicepkg/vr360-core'
@@ -279,7 +279,7 @@ class Vr360 {
 
 点击查看 [SpaceConfig](#spaceconfig-构造参数里的空间配置) 类型
 
-#### 示例
+#### 使用
 
 ```ts
 import {Vr360, SpaceConfig} from '@nicepkg/vr360-core'
@@ -319,18 +319,18 @@ class Vr360 {
 }
 ```
 
-#### 示例
+#### 使用
 
 ```ts
 import {Vr360, SpaceConfig} from '@nicepkg/vr360-core'
 
 const spacesConfig: SpaceConfig[] = [
   {
-    id: 'roomA',
+    id: 'spaceA',
     ...
   },
   {
-    id: 'roomB',
+    id: 'spaceB',
     ...
   }
 ]
@@ -343,8 +343,8 @@ const vr360 = new Vr360({
 
 vr360.render()
 
-// 切换到 roomB 空间
-vr360.switchSpace('roomB')
+// 切换到 spaceB 空间
+vr360.switchSpace('spaceB')
 ```
 
 ## 开始渲染全景
@@ -362,7 +362,7 @@ class Vr360 {
 }
 ```
 
-#### 示例
+#### 使用
 
 ```ts
 import {Vr360} from '@nicepkg/vr360-core'
@@ -394,7 +394,7 @@ class Vr360 {
 }
 ```
 
-#### 示例
+#### 使用
 
 ```ts
 import {Vr360} from '@nicepkg/vr360-core'
@@ -429,7 +429,7 @@ class Vr360 {
 }
 ```
 
-#### 示例
+#### 使用
 
 ```ts
 import {Vr360} from '@nicepkg/vr360-core'

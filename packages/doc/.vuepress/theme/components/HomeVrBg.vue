@@ -49,7 +49,7 @@ let vr360: InstanceType<typeof Vr360>
 
 const spacesConfig = ref<SpaceConfig[]>([
   {
-    id: 'roomA',
+    id: 'spaceA',
     camera: {
       position: {
         x: 0,
