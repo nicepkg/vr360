@@ -1,6 +1,6 @@
 {
   "name": "@nicepkg/vr360-shared",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "A shared package of internal utility functions, including build and test functions.",
   "keywords": [
     "vr360-shared",
