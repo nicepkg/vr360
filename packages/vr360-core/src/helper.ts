@@ -100,22 +100,28 @@ export function addListenerToThreeObject(
   // 鼠标是否处于按压状态，用于传给 tip 判断，在按下鼠标滑动时不显示 tip
   let isMouseDown = false
 
-  renderElement.addEventListener('mousedown', () => {
-    isMouseDown = true
-  })
+  ;['mousedown'].map(eventName =>
+    renderElement.addEventListener(eventName, () => {
+      isMouseDown = true
+    })
+  )
+  ;['mouseup'].map(eventName =>
+    renderElement.addEventListener(eventName, () => {
+      isMouseDown = false
+    })
+  )
 
-  renderElement.addEventListener('mouseup', () => {
-    isMouseDown = false
-  })
-
-  function handleEvent(eventName: string, event: MouseEvent) {
+  function handleEvent(eventName: string, event: MouseEvent | TouchEvent) {
     event.preventDefault()
     const {camera, scene, renderer} = getDeps()
     if (!camera || !scene || !renderer) return
     const renderDomBound = renderer.domElement.getBoundingClientRect()
 
-    mouse.x = ((event.clientX - renderDomBound.left) / renderer.domElement.clientWidth) * 2 - 1
-    mouse.y = -((event.clientY - renderDomBound.top) / renderer.domElement.clientHeight) * 2 + 1
+    const clientX = (event as TouchEvent)?.changedTouches?.[0]?.clientX ?? (event as MouseEvent).clientX
+    const clientY = (event as TouchEvent)?.changedTouches?.[0]?.clientY ?? (event as MouseEvent).clientY
+
+    mouse.x = ((clientX - renderDomBound.left) / renderer.domElement.clientWidth) * 2 - 1
+    mouse.y = -((clientY - renderDomBound.top) / renderer.domElement.clientHeight) * 2 + 1
 
     raycaster.setFromCamera(mouse, camera)
 
@@ -159,7 +165,7 @@ export function addListenerToThreeObject(
     // }
 
     firstIntersect.object.dispatchEvent({
-      type: eventName,
+      type: eventName === 'touchmove' ? 'mousemove' : eventName,
       intersect: firstIntersect,
       sourceEvent: event,
       isMouseDown

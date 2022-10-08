@@ -18,10 +18,8 @@
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",
     "@types/three": "^0.144.0",
-    "@unocss/reset": "^0.45.26",
     "@vitejs/plugin-react": "^2.1.0",
     "typescript": "4.7.4",
-    "unocss": "^0.45.26",
     "vite": "3.0.9"
   }
 }
