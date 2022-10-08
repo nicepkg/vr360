@@ -12,8 +12,10 @@ import HomeVrBg from './HomeVrBg.vue'
     <HomeFeatures />
     <HomeContent />
     <HomeFooter />
-    <teleport to="body">
-      <HomeVrBg :show-mask="true"></HomeVrBg>
-    </teleport>
+    <ClientOnly>
+      <teleport to="#vr-teleport">
+        <HomeVrBg :show-mask="true"></HomeVrBg>
+      </teleport>
+    </ClientOnly>
   </main>
 </template>

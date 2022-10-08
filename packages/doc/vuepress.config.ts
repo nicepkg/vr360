@@ -63,5 +63,7 @@ export default defineUserConfig({
 
   theme: localTheme(),
   bundler: viteBundler(bundlerConfig),
+  templateDev: pathResolve('.vuepress/index.build.html'),
+  templateBuild: pathResolve('.vuepress/index.build.html'),
   plugins
 })
