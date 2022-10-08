@@ -1,0 +1,6 @@
+[build.environment]
+  NODE_VERSION = "16"
+  NPM_FLAGS = "--version" # prevent Netlify npm install
+[build]
+  publish = "packages/doc/.vuepress/dist"
+  command = "npm i -g pnpm && pnpm i --store=node_modules/.pnpm-store --frozen-lockfile && pnpm build:all"
