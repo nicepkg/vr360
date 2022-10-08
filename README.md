@@ -1,6 +1,6 @@
 <div align="center">
-  <a href="https://vr360-docs.netlify.app/">
-    <img src="https://vr360-docs.netlify.app/images/logo-dark.svg" width="150">
+  <a href="https://vr360.nicepkg.cn/">
+    <img src="https://vr360.nicepkg.cn/images/logo-bg.png" width="150">
   </a>
   <br>
   <br>
@@ -24,17 +24,17 @@ json 驱动视图的特性是好维护，你甚至可以不用接触 threejs。�
 
 ## 文档
 
-[查看文档](https://vr360-docs.netlify.app/)
+[查看文档](https://vr360.nicepkg.cn/)
 
 ## 库列表
 
-| 库名                                                           | 文档                                                        | 版本                                                                                             | 描述                                                                                        |
-| -------------------------------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------- |
-| [@nicepkg/vr360-core](./packages/vr360-core/README.md)         | [链接](https://vr360-docs.netlify.app/libs/vr360-core/)     | <img src="https://img.shields.io/npm/v/@nicepkg/vr360-core?style=flat-square" alt="version">     | json 驱动的全景浏库，设计框架无关性，可用于任何框架，如 vue/react/angular/                  |
-| [@nicepkg/vr360-ui](./packages/vr360-ui/README.md)             | [链接](https://vr360-docs.netlify.app/libs/vr360-ui/)       | <img src="https://img.shields.io/npm/v/@nicepkg/vr360-ui?style=flat-square" alt="version">       | (开发中...) 提供一个现成的 vr360 viewer 和 editor 组件，基于 stencil 构建的 web component。 |
-| [@nicepkg/vr360-ui-vue2](./packages/vr360-ui-vue2/README.md)   | [链接](https://vr360-docs.netlify.app/libs/vr360-ui-vue2/)  | <img src="https://img.shields.io/npm/v/@nicepkg/vr360-ui-vue2?style=flat-square" alt="version">  | (开发中...) vr360-ui 的 vue2 二次封装版                                                     |
-| [@nicepkg/vr360-ui-vue3](./packages/vr360-ui-vue3/README.md)   | [链接](https://vr360-docs.netlify.app/libs/vr360-ui-vue3/)  | <img src="https://img.shields.io/npm/v/@nicepkg/vr360-ui-vue3?style=flat-square" alt="version">  | (开发中...) vr360-ui 的 vue3 二次封装版本，开箱即用。                                       |
-| [@nicepkg/vr360-ui-react](./packages/vr360-ui-react/README.md) | [链接](https://vr360-docs.netlify.app/libs/vr360-ui-react/) | <img src="https://img.shields.io/npm/v/@nicepkg/vr360-ui-react?style=flat-square" alt="version"> | (开发中...) vr360-ui 的 react 二次封装版本，开箱即用。                                      |
+| 库名                                                           | 文档                                                  | 版本                                                                                             | 描述                                                                                        |
+| -------------------------------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------- |
+| [@nicepkg/vr360-core](./packages/vr360-core/README.md)         | [链接](https://vr360.nicepkg.cn/libs/vr360-core/)     | <img src="https://img.shields.io/npm/v/@nicepkg/vr360-core?style=flat-square" alt="version">     | json 驱动的全景浏库，设计框架无关性，可用于任何框架，如 vue/react/angular/                  |
+| [@nicepkg/vr360-ui](./packages/vr360-ui/README.md)             | [链接](https://vr360.nicepkg.cn/libs/vr360-ui/)       | <img src="https://img.shields.io/npm/v/@nicepkg/vr360-ui?style=flat-square" alt="version">       | (开发中...) 提供一个现成的 vr360 viewer 和 editor 组件，基于 stencil 构建的 web component。 |
+| [@nicepkg/vr360-ui-vue2](./packages/vr360-ui-vue2/README.md)   | [链接](https://vr360.nicepkg.cn/libs/vr360-ui-vue2/)  | <img src="https://img.shields.io/npm/v/@nicepkg/vr360-ui-vue2?style=flat-square" alt="version">  | (开发中...) vr360-ui 的 vue2 二次封装版                                                     |
+| [@nicepkg/vr360-ui-vue3](./packages/vr360-ui-vue3/README.md)   | [链接](https://vr360.nicepkg.cn/libs/vr360-ui-vue3/)  | <img src="https://img.shields.io/npm/v/@nicepkg/vr360-ui-vue3?style=flat-square" alt="version">  | (开发中...) vr360-ui 的 vue3 二次封装版本，开箱即用。                                       |
+| [@nicepkg/vr360-ui-react](./packages/vr360-ui-react/README.md) | [链接](https://vr360.nicepkg.cn/libs/vr360-ui-react/) | <img src="https://img.shields.io/npm/v/@nicepkg/vr360-ui-react?style=flat-square" alt="version"> | (开发中...) vr360-ui 的 react 二次封装版本，开箱即用。                                      |
 
 ## Contributing
 
