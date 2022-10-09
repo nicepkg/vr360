@@ -1,4 +1,3 @@
-import {spaceEventNames, SpaceManager} from './manager/space'
 /* eslint-disable unicorn/no-array-callback-reference */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
@@ -16,6 +15,7 @@ import {
   update3dObjectBaseInfo
 } from './helper'
 import type {Position, SpaceConfig, ThreeObjectBase, Vr360Events, Vr360Options} from './types'
+import {spaceEventNames, SpaceManager} from './manager/space'
 import type {SpaceEventName} from './manager/space'
 
 export type Vr360EventName = keyof Vr360Events
