@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://vr360.nicepkg.cn/">
-    <img src="https://vr360.nicepkg.cn/images/logo-bg.png" width="150">
+    <img src="https://vr360.nicepkg.cn/images/logo-bg.png" width="50%">
   </a>
   <br>
   <br>
