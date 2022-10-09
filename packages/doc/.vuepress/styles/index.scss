@@ -38,7 +38,17 @@ body {
   min-height: 100vh;
 }
 
+.code-group {
+  width: 100%;
+  max-width: calc(100vw - 3rem);
+}
+
 .theme-default-content div[class*='language-'] {
   width: calc(100% + 3rem);
   max-width: 100vw;
+}
+
+.theme-default-content .code-group div[class*='language-'] {
+  width: auto;
+  max-width: auto;
 }
