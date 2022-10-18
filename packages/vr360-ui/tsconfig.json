@@ -1,0 +1,19 @@
+{
+  "extends": "../../tsconfig-base.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist",
+    "alwaysStrict": true,
+    "declaration": true,
+    "target": "es2017",
+    "jsx": "react",
+    "jsxFactory": "h",
+    "removeComments": false,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@test/*": ["./test/*"]
+    }
+  },
+  "include": ["src", "./scripts/**/*", "./types/**/*", "./test/**/*", "./*.js", "./*.ts"],
+  "exclude": ["node_modules", "dist"]
+}

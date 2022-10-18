@@ -15,3 +15,6 @@ types/components.d.ts
 types/auto-imports.d.ts
 *.generated.ts
 **/.vuepress/examples/
+react-component-lib
+vue-component-lib
+packages/vr360-ui/loader

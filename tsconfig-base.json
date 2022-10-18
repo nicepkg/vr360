@@ -8,6 +8,7 @@
     "esModuleInterop": true,
     "jsx": "preserve",
     "skipLibCheck": true,
+    "allowUnreachableCode": false,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "moduleResolution": "node",

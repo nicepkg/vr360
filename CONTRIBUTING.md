@@ -37,7 +37,7 @@ pnpm bootstrap
 We use VuePress for rapid development and documenting. You can start it locally by
 
 ```bash
-cd packages/doc-site
+cd packages/doc
 pnpm dev
 ```
 

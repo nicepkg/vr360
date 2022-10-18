@@ -1,4 +1,8 @@
 //@ts-check
+const getTsLintConfig = require('./eslintrc-ts')
+const getVueLintConfig = require('./eslintrc-vue')
+const getReactLintConfig = require('./eslintrc-react')
+// const getStencilLintConfig = require('./eslintrc-stencil')
 
 module.exports = /** @type { import('eslint').Linter.Config } */ ({
   root: true,
@@ -7,9 +11,6 @@ module.exports = /** @type { import('eslint').Linter.Config } */ ({
     'plugin:eslint-comments/recommended',
     'plugin:import/recommended',
     'plugin:unicorn/recommended',
-    'plugin:react/recommended',
-    'plugin:react/jsx-runtime',
-    'plugin:react-hooks/recommended',
     'plugin:jsx-a11y/recommended',
     'plugin:prettier/recommended',
     'prettier'
@@ -32,7 +33,7 @@ module.exports = /** @type { import('eslint').Linter.Config } */ ({
     },
     'import/extensions': ['.js', '.jsx']
   },
-  ignorePatterns: ['node_modules/*'],
+  ignorePatterns: ['node_modules/*', '**/node_modules/*', 'dist/*', '**/dist/*'],
   rules: {
     /**
      * Turn-off recommended rules
@@ -40,9 +41,8 @@ module.exports = /** @type { import('eslint').Linter.Config } */ ({
     'array-callback-return': 'off',
     'jsx-a11y/click-events-have-key-events': 'off',
     'jsx-a11y/no-autofocus': 'off',
-    'react/display-name': 'off',
-    'react/prop-types': 'off',
     'eslint-comments/disable-enable-pair': 'off',
+    'eslint-comments/no-unlimited-disable': 'off',
     'unicorn/no-array-reduce': 'off',
     'unicorn/filename-case': 'off',
     'unicorn/no-null': 'off',
@@ -52,13 +52,13 @@ module.exports = /** @type { import('eslint').Linter.Config } */ ({
     'unicorn/consistent-function-scoping': 'off',
     'unicorn/no-array-for-each': 'off',
     'unicorn/prefer-spread': 'off',
+    'unicorn/no-abusive-eslint-disable': 'off',
 
     /**
      * Adjust recommended rules
      */
     'no-empty': ['error', {allowEmptyCatch: true}],
     'no-unused-vars': ['error', {args: 'none', ignoreRestSiblings: true}],
-    'react-hooks/exhaustive-deps': ['error', {additionalHooks: '(useRecoilCallback|useRecoilTransaction)'}],
 
     /**
      * Use additional rules
@@ -98,11 +98,7 @@ module.exports = /** @type { import('eslint').Linter.Config } */ ({
     'no-useless-concat': 'error',
     'no-useless-constructor': 'error',
     'no-useless-rename': 'error',
-    strict: ['error', 'never'],
-    'react/jsx-pascal-case': ['error', {allowAllCaps: true}],
-    'react/no-array-index-key': 'error',
-    'react/no-typos': 'error',
-    'react/style-prop-object': 'error'
+    strict: ['error', 'never']
   },
   overrides: [
     {
@@ -116,125 +112,46 @@ module.exports = /** @type { import('eslint').Linter.Config } */ ({
       }
     },
     {
-      files: ['**/*.ts?(x)', '**/*.vue'],
-      parser: 'vue-eslint-parser',
-      parserOptions: {
-        parser: '@typescript-eslint/parser',
-        ecmaversion: 2022,
-        sourceType: 'module',
-        ecmaFeatures: {
-          jsx: true
-        },
-        extraFileExtensions: ['.vue'],
+      // 纯 ts 项目
+      ...getTsLintConfig({
+        files: [
+          './*.ts?(x)',
+          './scripts/**/*.ts?(x)',
+          './types/**/*.ts?(x)',
+          './packages/{vr360-core,vr360-ui,vr360-shared}/**/*.ts?(x)'
+        ],
+        project: ['./tsconfig.json', './packages/{vr360-core,vr360-ui,vr360-shared}/tsconfig.json']
+      })
+    },
+    {
+      // vue 项目
+      ...getVueLintConfig({
+        files: [
+          './packages/{vr360-ui-vue3,vr360-ui-vue2,doc}/**/*.ts?(x)',
+          './playgrounds/{vue3,vue2}/**/*.ts?(x)',
+          '**/*.vue'
+        ],
         project: [
-          './tsconfig.json',
-          './packages/*/tsconfig.json',
-          './examples/**/tsconfig.json',
-          './playgrounds/**/tsconfig.json'
+          // './packages/vr360-ui-vue2/tsconfig.json',
+          './packages/{doc,vr360-ui-vue3}/tsconfig.json',
+          './playgrounds/{vue2,vue3}/tsconfig.json'
         ]
-      },
-      settings: {
-        react: {version: 'detect'},
-        'import/resolver': {
-          typescript: {
-            alwaysTryTypes: true
-          }
-        }
-      },
-      env: {
-        browser: true,
-        node: true,
-        es6: true
-      },
-      extends: [
-        'plugin:@typescript-eslint/recommended',
-        'plugin:@typescript-eslint/recommended-requiring-type-checking',
-        'plugin:@typescript-eslint/strict',
-        'plugin:import/typescript',
-        'plugin:vue/recommended',
-        'plugin:prettier/recommended',
-        'prettier'
-      ],
-      rules: {
-        /**
-         * Turn-off recommended rules
-         */
-        '@typescript-eslint/no-floating-promises': 'off',
-        '@typescript-eslint/non-nullable-type-assertion-style': 'off',
-        '@typescript-eslint/no-unsafe-assignment': 'off',
-        '@typescript-eslint/no-non-null-assertion': 'off',
-        '@typescript-eslint/no-unsafe-call': 'off',
-        '@typescript-eslint/no-unnecessary-type-assertion': 'off',
-        '@typescript-eslint/prefer-ts-expect-error': 'off',
-
-        // 'tsc' already handles this (https://typescript-eslint.io/docs/linting/troubleshooting/#eslint-plugin-import)
-        'import/default': 'off',
-        'import/namespace': 'off',
-        'import/no-named-as-default-member': 'off',
-        'import/no-unresolved': 'off',
-
-        /**
-         * Adjust recommended rules
-         */
-        '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
-        '@typescript-eslint/no-misused-promises': ['error', {checksVoidReturn: {arguments: false, attributes: false}}],
-        '@typescript-eslint/no-unused-vars': ['error', {args: 'none', ignoreRestSiblings: true}],
-
-        /**
-         * Use additional rules
-         */
-        '@typescript-eslint/consistent-type-imports': 'error',
-        'import/first': 'error',
-        'import/no-anonymous-default-export': 'error',
-
-        /**
-         * Replace additional rules
-         */
-        'default-case': 'off', // 'tsc' noFallthroughCasesInSwitch option is more robust
-        'no-array-constructor': 'off',
-        '@typescript-eslint/no-array-constructor': 'error',
-        'no-implied-eval': 'off',
-        '@typescript-eslint/no-implied-eval': 'error',
-        'no-loop-func': 'off',
-        '@typescript-eslint/no-loop-func': 'error',
-        'no-unused-expressions': 'off',
-        '@typescript-eslint/no-unused-expressions': [
-          'error',
-          {
-            allowShortCircuit: true,
-            allowTernary: true,
-            allowTaggedTemplates: true
-          }
-        ],
-        'no-throw-literal': 'off',
-        '@typescript-eslint/no-throw-literal': 'error',
-        'no-useless-constructor': 'off',
-        '@typescript-eslint/no-useless-constructor': 'error',
-
-        // vue
-        'vue/no-v-html': 'off',
-        'vue/singleline-html-element-content-newline': 'off',
-        'vue/html-self-closing': 'off',
-        'vue/max-attributes-per-line': [
-          'error',
-          {
-            singleline: 10,
-            multiline: 1
-          }
-        ],
-        'vue/require-default-prop': 'off',
-        'vue/html-closing-bracket-spacing': 'error',
-        'vue/no-unused-vars': 'warn',
-        'vue/multi-word-component-names': 'off',
-        'vue/one-component-per-file': 'off',
-        'vue/no-v-model-argument': 'off',
-        'vue/comment-directive': [
-          'warn',
-          {
-            reportUnusedDisableDirectives: false
-          }
-        ]
-      }
+      })
+    },
+    {
+      // react 项目
+      ...getReactLintConfig({
+        files: ['./packages/vr360-ui-react/**/*.ts?(x)', './playgrounds/react/**/*.ts?(x)'],
+        project: ['./packages/vr360-ui-react/tsconfig.json', './playgrounds/react/tsconfig.json']
+      })
     }
+    // {
+    //   // stencil 项目，因为 stencil lint 版本太旧，所以暂时不用
+    //   ...getStencilLintConfig({
+    //     files: ['./packages/vr360-ui/**/*.ts?(x)'],
+    //     project: ['./packages/vr360-ui/tsconfig.json']
+    //   })
+    // }
   ]
 })
+// console.log('eslint', JSON.stringify(module.exports, null, 4))

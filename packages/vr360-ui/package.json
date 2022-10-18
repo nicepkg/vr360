@@ -1,0 +1,82 @@
+{
+  "name": "@nicepkg/vr360-ui",
+  "version": "0.3.1",
+  "description": "",
+  "keywords": [
+    "vr360",
+    "vr360-core",
+    "vr360-ui",
+    "web-component",
+    "panorama",
+    "pannellum",
+    "photo-sphere-viewer",
+    "photograph",
+    "nicepkg",
+    "webgl",
+    "threejs"
+  ],
+  "author": "yangjinming <https://github.com/2214962083>",
+  "funding": "https://github.com/sponsors/2214962083",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "stencil build --docs --legacy",
+    "build:watch": "cross-env WATCH=true pnpm build",
+    "clean": "rimraf ./dist/**/*",
+    "dev": "cross-env NODE_ENV=development stencil build --docs --watch --legacy",
+    "test": "stencil test --e2e --ci",
+    "test:e2e": "stencil test --e2e",
+    "test:e2e-update": "stencil test --e2e -u ./",
+    "test:e2e-watch": "stencil test --e2e --watch",
+    "test:spec": "stencil test --spec",
+    "test:spec-watch": "stencil test --spec --watch",
+    "type-check": "tsc --noEmit"
+  },
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.js",
+  "es2015": "./dist/esm/index.js",
+  "es2017": "./dist/esm/index.js",
+  "jsnext:main": "./dist/esm/index.js",
+  "collection": "./dist/collection/collection-manifest.json",
+  "types": "./dist/types/interface.d.ts",
+  "unpkg": "./dist/vr360-ui/index.esm.js",
+  "jsdelivr": "./dist/vr360-ui/index.esm.js",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs.js",
+      "import": "./dist/index.js",
+      "types": "./dist/types/interface.d.ts"
+    },
+    "./*": "./*"
+  },
+  "files": [
+    "dist",
+    "webpack-plugin.js"
+  ],
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicepkg/vr360.git",
+    "directory": "packages/vr360-core"
+  },
+  "bugs": {
+    "url": "https://github.com/nicepkg/vr360/issues"
+  },
+  "homepage": "https://github.com/nicepkg/vr360#readme",
+  "dependencies": {
+    "@nicepkg/vr360-core": "workspace:*",
+    "@stencil/core": "2.18.1",
+    "@types/three": "^0.144.0",
+    "clsx": "^1.2.1",
+    "three": "^0.145.0"
+  },
+  "devDependencies": {
+    "@stencil/angular-output-target": "^0.4.0",
+    "@stencil/react-output-target": "^0.3.1",
+    "@stencil/sass": "^2.0.0",
+    "@stencil/vue-output-target": "^0.6.2",
+    "@types/node": "*",
+    "esno": "*",
+    "typescript": "*"
+  }
+}
