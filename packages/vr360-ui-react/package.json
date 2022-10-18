@@ -21,19 +21,14 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "pnpm type-check &&esno ./scripts/build.ts",
-    "build:watch": "cross-env WATCH=true pnpm build",
+    "build": "pnpm type-check &&unbuild",
+    "build:watch": "pnpm build -- --stub",
     "clean": "rimraf ./dist/**/*",
-    "dev": "esno ./src/playground.ts",
-    "test": "vitest run --silent --passWithNoTests",
-    "test:watch": "pnpm test -- --watch",
     "type-check": "tsc --noEmit"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "unpkg": "./dist/index.min.umd.js",
-  "jsdelivr": "./dist/index.min.umd.js",
   "exports": {
     ".": {
       "require": "./dist/index.cjs",
@@ -43,8 +38,7 @@
     "./*": "./*"
   },
   "files": [
-    "dist",
-    ".yalc"
+    "dist"
   ],
   "sideEffects": false,
   "repository": {
@@ -64,16 +58,13 @@
     "@nicepkg/vr360-ui": "workspace:*"
   },
   "devDependencies": {
-    "@nicepkg/vr360-shared": "workspace:*",
     "@types/node": "*",
     "@types/react": "*",
     "@types/react-dom": "*",
     "esno": "*",
-    "jsdom": "^20.0.1",
     "react": "*",
     "react-dom": "*",
     "typescript": "*",
-    "vite": "*",
-    "vitest": "*"
+    "unbuild": "*"
   }
 }

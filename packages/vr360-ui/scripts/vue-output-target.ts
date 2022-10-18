@@ -28,10 +28,9 @@ async function runFix(proxyPath: string) {
   let utilsString = await fs.promises.readFile(elementsVueUtilsPath, {
     encoding: 'utf8'
   })
-  utilsString = utilsString.replace(
-    'modelPropValue = (e?.target as any)[modelProp];',
-    'modelPropValue = (e as CustomEvent).detail;'
-  )
+  utilsString = utilsString
+    .replace('modelPropValue = (e?.target as any)[modelProp];', 'modelPropValue = (e as CustomEvent).detail;')
+    .replace(/props\[modelProp]/g, "props[modelProp || '']")
 
   await fs.promises.writeFile(elementsVueUtilsPath, utilsString)
 }

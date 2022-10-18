@@ -16,6 +16,7 @@ overrides:
   react-dom: 17.0.2
   react-router-dom: 6.3.0
   typescript: 4.7.4
+  unbuild: 0.8.11
   vite: 3.0.9
   vitest: 0.23.4
   vue-demi: 0.13.11
@@ -135,7 +136,7 @@ importers:
       stylelint-config-prettier: 9.0.3_stylelint@14.14.0
       stylelint-config-recess-order: 3.0.0_stylelint@14.14.0
       stylelint-config-recommended: 9.0.0_stylelint@14.14.0
-      stylelint-config-recommended-vue: 1.4.0_stylelint@14.14.0
+      stylelint-config-recommended-vue: 1.4.0_2wb2ag3ubchp7fdo72hd6rkeve
       stylelint-config-standard: 28.0.0_stylelint@14.14.0
       stylelint-declaration-block-no-ignored-properties: 2.5.0_stylelint@14.14.0
       stylelint-less: 1.0.6_stylelint@14.14.0
@@ -261,7 +262,7 @@ importers:
       rollup: ^2.79.1
       rollup-plugin-visualizer: ^5.8.2
       typescript: 4.7.4
-      unbuild: ^0.8.11
+      unbuild: 0.8.11
       unplugin-auto-import: ^0.11.2
       vite: 3.0.9
       vite-plugin-dts: ^1.6.1
@@ -354,55 +355,46 @@ importers:
 
   packages/vr360-ui-react:
     specifiers:
-      '@nicepkg/vr360-shared': workspace:*
       '@nicepkg/vr360-ui': workspace:*
       '@types/node': 18.7.23
       '@types/react': 18.0.21
       '@types/react-dom': 18.0.6
       esno: 0.16.3
-      jsdom: ^20.0.1
       react: 17.0.2
       react-dom: 17.0.2
       typescript: 4.7.4
-      vite: 3.0.9
-      vitest: 0.23.4
+      unbuild: 0.8.11
     dependencies:
       '@nicepkg/vr360-ui': link:../vr360-ui
     devDependencies:
-      '@nicepkg/vr360-shared': link:../vr360-shared
       '@types/node': 18.7.23
       '@types/react': 18.0.21
       '@types/react-dom': 18.0.6
       esno: 0.16.3
-      jsdom: 20.0.1
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       typescript: 4.7.4
-      vite: 3.0.9
-      vitest: 0.23.4_jsdom@20.0.1
+      unbuild: 0.8.11
 
   packages/vr360-ui-vue3:
     specifiers:
-      '@nicepkg/vr360-shared': workspace:*
       '@nicepkg/vr360-ui': workspace:*
       '@types/node': 18.7.23
       esno: 0.16.3
-      jsdom: ^20.0.1
       typescript: 4.7.4
-      vite: 3.0.9
-      vitest: 0.23.4
+      unbuild: 0.8.11
       vue: ^3.2.41
     dependencies:
       '@nicepkg/vr360-ui': link:../vr360-ui
     devDependencies:
-      '@nicepkg/vr360-shared': link:../vr360-shared
       '@types/node': 18.7.23
       esno: 0.16.3
-      jsdom: 20.0.1
       typescript: 4.7.4
-      vite: 3.0.9
-      vitest: 0.23.4_jsdom@20.0.1
+      unbuild: 0.8.11
       vue: 3.2.41
+
+  packages/vr360-ui/dist/loader:
+    specifiers: {}
 
   playgrounds/react:
     specifiers:
@@ -10760,10 +10752,11 @@ packages:
       stylelint-order: 5.0.0_stylelint@14.14.0
     dev: true
 
-  /stylelint-config-recommended-vue/1.4.0_stylelint@14.14.0:
+  /stylelint-config-recommended-vue/1.4.0_2wb2ag3ubchp7fdo72hd6rkeve:
     resolution: {integrity: sha512-DVJqyX2KvMCn9U0+keL12r7xlsH26K4Vg8NrIZuq5MoF7g82DpMp326Om4E0Q+Il1o+bTHuUyejf2XAI0iD04Q==}
     engines: {node: ^12 || >=14}
     peerDependencies:
+      postcss-html: ^1.0.0
       stylelint: '>=14.0.0'
     dependencies:
       postcss-html: 1.5.0

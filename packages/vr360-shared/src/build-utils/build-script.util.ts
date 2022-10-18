@@ -71,7 +71,7 @@ export function changeViteConfig(config: UserConfig, options: ChangeConfigOption
   }
 }
 
-export type ChangeConfigFn = (config: UserConfig, options: ChangeConfigOptions) => Promise<InlineConfig>
+export type ChangeConfigFn = (config: UserConfig, options: ChangeConfigOptions) => Promise<InlineConfig> | InlineConfig
 export type BuildOptions = {
   minifyConfig: UserConfig
   unMinifyConfig: UserConfig

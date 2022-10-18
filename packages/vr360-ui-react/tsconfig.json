@@ -4,7 +4,6 @@
     "baseUrl": "./",
     "outDir": "./dist",
     "jsx": "react",
-    "types": ["vite/client", "vitest", "vitest/globals"],
     "paths": {
       "@/*": ["./src/*"],
       "@test/*": ["./test/*"]

@@ -38,9 +38,10 @@
   "es2017": "./dist/esm/index.js",
   "jsnext:main": "./dist/esm/index.js",
   "collection": "./dist/collection/collection-manifest.json",
+  "collection:main": "./dist/collection/index.js",
   "types": "./dist/types/interface.d.ts",
-  "unpkg": "./dist/vr360-ui/index.esm.js",
-  "jsdelivr": "./dist/vr360-ui/index.esm.js",
+  "unpkg": "./dist/vr360-ui/vr360-ui.esm.js",
+  "jsdelivr": "./dist/vr360-ui/vr360-ui.esm.js",
   "exports": {
     ".": {
       "require": "./dist/index.cjs.js",

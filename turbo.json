@@ -7,7 +7,22 @@
       "inputs": ["src/**", "scripts/**", "types/**"],
       "outputs": ["dist/**"]
     },
-    "doc-site#build": {
+    "@nicepkg/vr360-ui#build": {
+      "dependsOn": ["@nicepkg/vr360-core#build"],
+      "inputs": ["src/**", "scripts/**", "types/**"],
+      "outputs": ["dist/**"]
+    },
+    "@nicepkg/vr360-ui-vue3#build": {
+      "dependsOn": ["@nicepkg/vr360-ui#build"],
+      "inputs": ["src/**", "scripts/**", "types/**"],
+      "outputs": ["dist/**"]
+    },
+    "@nicepkg/vr360-ui-react#build": {
+      "dependsOn": ["@nicepkg/vr360-ui#build"],
+      "inputs": ["src/**", "scripts/**", "types/**"],
+      "outputs": ["dist/**"]
+    },
+    "doc#build": {
       "dependsOn": ["^build"],
       "inputs": ["./**"],
       "outputs": ["./.vuepress/dist/**"]

@@ -127,7 +127,7 @@
     "react-router-dom": "*",
     "rollup": "^2.79.1",
     "typescript": "*",
-    "unbuild": "^0.8.11",
+    "unbuild": "*",
     "vite": "*",
     "vitest": "*",
     "vue": "^3.2.40",
